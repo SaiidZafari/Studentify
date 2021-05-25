@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 
 namespace Studentify.Models
 {
-    class Course
+    public class Course
     {
         public int CourseId { get; set; }
 
-        public string Subject { get; set; }
+        public Subject Subject { get; set; }
+
+        public int TeacherId { get; set; }
+
+        public IEnumerable<Student> Students { get; set; } = new List<Student>();
+
+        public string CourseName { get; set; }
+
+        public string Description { get; set; }
+
+        public Uri ImageUrl { get; set; }
     }
-        
 }
