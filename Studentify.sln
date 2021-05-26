@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Studentify.Api", "Studentif
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Studentify.Models", "Studentify.Models\Studentify.Models.csproj", "{38A59E68-494E-4202-AD2B-0397B9ED794A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Studentify.Web", "Studentify.Web\Studentify.Web.csproj", "{FBECC1A2-12FD-40F8-963D-A1FF96A513C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Studentify.Web", "Studentify.Web\Studentify.Web.csproj", "{FBECC1A2-12FD-40F8-963D-A1FF96A513C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
