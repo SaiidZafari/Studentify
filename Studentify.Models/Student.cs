@@ -10,12 +10,14 @@ namespace Studentify.Models
     {
         public int StudentId { get; set; }
 
-        public string StudentName { get; set; }
+        public string StudentName { get; set; }        
+
+        public string ImageUrl { get; set; }
+
 
         public IEnumerable<Course> Courses { get; set; } = new List<Course>();
 
         public IEnumerable<Grade> Grades { get; set; } = new List<Grade>();
 
-        public Uri ImageUrl { get; set; }
     }
 }

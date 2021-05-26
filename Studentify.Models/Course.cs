@@ -10,7 +10,7 @@ namespace Studentify.Models
     {
         public int CourseId { get; set; }
 
-        public Subject Subject { get; set; }
+        public int SubjectId { get; set; }
 
         public int TeacherId { get; set; }
 

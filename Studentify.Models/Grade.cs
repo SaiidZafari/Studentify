@@ -10,10 +10,16 @@ namespace Studentify.Models
     {
         public int GradeId { get; set; }
 
-        public int StudentId { get; set; }
+        public int StudentId { get; set; } // Foreign key
+        
+        public Student Student { get; set; } // Reference navigatio
 
-        public int CourseId { get; set; }
+        public int CourseId { get; set; } // Foreign key
 
-        public int StudentGrade { get; set; }
+        public Course Course { get; set; } // Reference navigatio
+
+        public int StudentGrade { get; set; }    
+
+        
     }
 }
