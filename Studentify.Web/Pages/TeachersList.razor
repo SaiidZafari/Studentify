@@ -1,0 +1,67 @@
+﻿@page "/api/teachers"
+@using Studentify.Models
+@using Studentify.Web.Services
+@using Microsoft.AspNetCore.Components;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Threading.Tasks;
+
+<h3>Teachers</h3>
+
+
+@if (Teachers == null)
+{
+    <div class="spiner"></div>
+}
+else
+{
+<div>
+ <table border="1">
+            <tr>
+                <th>Teacher Name</th>
+                <th>ImageUrl</th>
+           </tr>
+    @foreach (var teacher in Teachers)
+    {
+            <tr>
+                <td>@teacher.TeacherName</td>
+                <td>@teacher.ImageUrl</td>
+            </tr>
+    }</table>
+</div>
+
+<hr/>
+
+<div class="card-deck">
+    @foreach (var teacher in Teachers)
+        {
+            <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+                <div class="card-header">
+                    <h3>@teacher.TeacherName</h3>
+                </div>
+                <img class="card-img-top imageThumbnail" src="@teacher.ImageUrl" />
+
+            </div>
+        }
+</div>
+
+}
+
+
+ 
+
+
+
+@code {
+
+    [Inject]
+	public ITeacherService TeacherService { get; set; }
+
+	public IEnumerable<Teacher> Teachers { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+	{
+		Teachers = (await TeacherService.GetTeachers()).ToList();
+	}
+
+}

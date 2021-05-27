@@ -24,7 +24,7 @@ namespace Studentify.Api.Controllers
 
         // GET: api/Teachers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Teacher>>> GetEmployees()
+        public async Task<ActionResult<IEnumerable<Teacher>>> GetTeachers()
         {
             try
             {
@@ -74,7 +74,7 @@ namespace Studentify.Api.Controllers
 
                 if (teacherToUpdate == null)
                 {
-                    return NotFound($"Employee with Id = {id} not found");
+                    return NotFound($"Teacher with Id = {id} not found");
                 }
 
                 return await teacherRepository.UpdateTeacher(teacher);

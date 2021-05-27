@@ -9,28 +9,28 @@ namespace Studentify.Api.Models
 {
     public class TeacherRepository : ITeacherRepository
     {
-        private readonly AppDbContext Context;
+        private readonly AppDbContext dbContext;
 
-        public TeacherRepository(AppDbContext context)
+        public TeacherRepository(AppDbContext dbContext)
         {
-            Context = context;
+            this.dbContext = dbContext;
         }
 
         public async Task<Teacher> AddTeacher(Teacher teacher)
         {
-            var result = await Context.Teachers.AddAsync(teacher);
-            await Context.SaveChangesAsync();
+            var result = await dbContext.Teachers.AddAsync(teacher);
+            await dbContext.SaveChangesAsync();
             return result.Entity;
         }
 
         public async Task<Teacher> DeleteTeacher(int teacherId)
         {
-            var result = await Context.Teachers
-                .FirstOrDefaultAsync(t => t.TeacherId == teacherId);
+            var result = await dbContext.Teachers.FirstOrDefaultAsync(t => t.TeacherId == teacherId);
+
             if (result != null)
             {
-                Context.Teachers.Remove(result);
-                await Context.SaveChangesAsync();
+                dbContext.Teachers.Remove(result);
+                await dbContext.SaveChangesAsync();
 
                 return result;
             }
@@ -40,19 +40,19 @@ namespace Studentify.Api.Models
 
         public async Task<Teacher> GetTeacher(int teacherId)
         {
-            return await Context.Teachers
+            return await dbContext.Teachers
                 .Include(t => t.Courses)
                 .FirstOrDefaultAsync(t => t.TeacherId == teacherId);
         }
 
         public async Task<IEnumerable<Teacher>> GetTeachers()
         {
-            return await Context.Teachers.ToListAsync();
+            return await dbContext.Teachers.ToListAsync();
         }
 
         public async Task<IEnumerable<Teacher>> Search(string name)
         {
-            IQueryable<Teacher> query = Context.Teachers;
+            IQueryable<Teacher> query = dbContext.Teachers;
 
             if (!string.IsNullOrEmpty(name))
             {
