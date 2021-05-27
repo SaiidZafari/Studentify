@@ -51,7 +51,7 @@ a, .btn-link {
 
 header{
     display: flex;
-    padding: 10px 30px 0 30px;
+    padding: 10px 100px 0 100px;
     border-bottom: 1px solid #000;
 }
 
@@ -59,23 +59,23 @@ header div{
     width: calc(100% / 3);
 }
 
-.logo-title-container{
+header .logo-title-container{
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 10px 0;
 }
 
-.logo-title-container i{
+header .logo-title-container i{
     font-size: 40px;
     padding-right: 10px;
 }
 
-.logo-title-container h1{
+header .logo-title-container h1{
     margin: 0;
 }
 
-.presentation-container ul{
+header .presentation-container ul{
     padding-left: 0;
     border: 1px solid #000;
     border-bottom: 0;
@@ -85,60 +85,97 @@ header div{
     width: 250px;
 }
 
-.presentation-container ul li {
+header .presentation-container ul li {
     list-style-type: none;
     padding: 0 5px;
     font-size: 12px;
     width: calc(100% / 4);
 }
 
-.search-container{
+header .search-container{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-.search-inner-container{
+header .search-inner-container{
     position: relative;
 }
 
-.search-inner-container i{
+
+header .search-inner-container i {
     position: absolute;
     top: 6px;
-    left:10px;
+    left: 10px;
 }
 
-.search-inner-container input{
+header .search-inner-container input {
     border-radius: 20px;
     padding-left: 30px;
 }
 
-.search-input-container input:focus{
+header .search-input-container input:focus {
     outline: none;
 }
 
-.utilities-container{
+header .utilities-container {
     display: flex;
     justify-content: flex-end;
 }
 
-.utilities-inner-container {
+header .utilities-inner-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 250px;
 }
 
-.utilities-inner-container div{
+header .utilities-inner-container div {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 10px;
 }
-
-.utilities-inner-container div i{
+header .utilities-inner-container div i {
     font-size: 25px;
 }
+
+footer {
+    display: flex;
+    flex-direction: column;
+}
+
+footer .top-container{
+    display: flex;
+    flex-direction: row;
+    padding: 10px 100px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+footer .bottom-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+footer .top-container i {
+    font-size: 20px;
+}
+
+footer .top-container div{
+    width: 25%;
+}
+
+footer .top-container div ul{
+    padding-left: 0;
+}
+
+footer .top-container div ul li {
+    list-style-type: none;
+}
+
 
 
