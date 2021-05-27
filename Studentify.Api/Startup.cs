@@ -30,7 +30,9 @@ namespace Studentify.Api
         {
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
-            
+
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

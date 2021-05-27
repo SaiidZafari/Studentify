@@ -14,95 +14,253 @@ namespace Studentify.Api.Controllers
     [ApiController]
     public class TeachersController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly ITeacherRepository teacherRepository;
 
-        public TeachersController(AppDbContext context)
+        public TeachersController(ITeacherRepository teacherRepository)
         {
-            _context = context;
+            this.teacherRepository = teacherRepository;
         }
+
 
         // GET: api/Teachers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Teacher>>> GetTeachers()
+        public async Task<ActionResult<IEnumerable<Teacher>>> GetEmployees()
         {
-            return await _context.Teachers.ToListAsync();
-        }
-
-        // GET: api/Teachers/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Teacher>> GetTeacher(int id)
-        {
-            var teacher = await _context.Teachers.FindAsync(id);
-
-            if (teacher == null)
-            {
-                return NotFound();
-            }
-
-            return teacher;
-        }
-
-        // PUT: api/Teachers/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTeacher(int id, Teacher teacher)
-        {
-            if (id != teacher.TeacherId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(teacher).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                return Ok(await teacherRepository.GetTeachers());
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
-                if (!TeacherExists(id))
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retriveing data from the database");
+            }
+        }
+
+        // GET: api/Teachers/3
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<Teacher>> GetTeacher(int id)
+        {
+            try
+            {
+                var Teacher = await teacherRepository.GetTeacher(id);
+
+                if (Teacher == null)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+                return Teacher;
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retriveing data from the database");
+            }
         }
+
+
+        // PUT: api/Teacher/2
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<Teacher>> PutTeacher(int id, Teacher teacher)
+        {
+            try
+            {
+                if (id != teacher.TeacherId)
+                {
+                    return BadRequest("Teacher ID mismatch");
+                }
+
+                var teacherToUpdate = await teacherRepository.GetTeacher(id);
+
+                if (teacherToUpdate == null)
+                {
+                    return NotFound($"Employee with Id = {id} not found");
+                }
+
+                return await teacherRepository.UpdateTeacher(teacher);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error update data");
+            }
+        }
+
 
         // POST: api/Teachers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Teacher>> PostTeacher(Teacher teacher)
+        public async Task<ActionResult<Teacher>> CreateTeacher(Teacher teacher)
         {
-            _context.Teachers.Add(teacher);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetTeacher", new { id = teacher.TeacherId }, teacher);
-        }
-
-        // DELETE: api/Teachers/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTeacher(int id)
-        {
-            var teacher = await _context.Teachers.FindAsync(id);
-            if (teacher == null)
+            try
             {
-                return NotFound();
+                var createdTeacher = await teacherRepository.AddTeacher(teacher);
+                return CreatedAtAction(nameof(GetTeacher), new { id = createdTeacher.TeacherId }, createdTeacher);
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error Add data");
             }
 
-            _context.Teachers.Remove(teacher);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
-        private bool TeacherExists(int id)
+
+        // DELETE: api/Teachers/3
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<Teacher>> DeleteTeacher(int id)
         {
-            return _context.Teachers.Any(e => e.TeacherId == id);
+
+            try
+            {
+                var teacherToDelete = await teacherRepository.GetTeacher(id);
+
+                if (teacherToDelete == null)
+                {
+                    return NotFound($"Teacher with Id = {id} not found");
+                }
+
+                return await teacherRepository.DeleteTeacher(id);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
+            }
+
         }
+
+
+        //[HttpGet("{search}/{name}")]
+        [HttpGet("{name}")]
+        public async Task<ActionResult<IEnumerable<Teacher>>> Search(string name)
+        {
+            try
+            {
+                var result = await teacherRepository.Search(name);
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+        //[HttpGet("{name}")]
+        //public async Task<ActionResult<IEnumerable<Teacher>>> Search(string name)
+        //{
+        //    //IQueryable<Teacher> result = Context.Teachers;
+
+        //    IQueryable<Teacher> result = Context.Teachers;
+
+        //    if (!string.IsNullOrEmpty(name))
+        //    {
+        //        result = result.Where(t => t.TeacherName.Contains(name));
+        //    }
+
+        //    //if (Id != null)
+        //    //{
+        //    //    result = result.Where(t => t.TeacherId == Id);
+        //    //}
+
+        //    return await result.ToArrayAsync();
+        //}
+
+        //// GET: api/Teachers
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Teacher>>> GetTeachers()
+        //{
+        //    return await Context.Teachers.ToListAsync();
+        //}
+
+        //// GET: api/Teachers/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Teacher>> GetTeacher(int id)
+        //{
+        //    var teacher = await Context.Teachers.FindAsync(id);
+
+        //    if (teacher == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return teacher;
+        //}
+
+        //// PUT: api/Teachers/5
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutTeacher(int id, Teacher teacher)
+        //{
+        //    if (id != teacher.TeacherId)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    Context.Entry(teacher).State = EntityState.Modified;
+
+        //    try
+        //    {
+        //        await Context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!TeacherExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return NoContent();
+        //}
+
+        //// POST: api/Teachers
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<Teacher>> PostTeacher(Teacher teacher)
+        //{
+        //    Context.Teachers.Add(teacher);
+        //    await Context.SaveChangesAsync();
+
+        //    return CreatedAtAction("GetTeacher", new { id = teacher.TeacherId }, teacher);
+        //}
+
+        //// DELETE: api/Teachers/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteTeacher(int id)
+        //{
+        //    var teacher = await Context.Teachers.FindAsync(id);
+        //    if (teacher == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    Context.Teachers.Remove(teacher);
+        //    await Context.SaveChangesAsync();
+
+        //    return NoContent();
+        //}
+
+        //private bool TeacherExists(int id)
+        //{
+        //    return Context.Teachers.Any(e => e.TeacherId == id);
+        //}
     }
 }
