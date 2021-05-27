@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Studentify.Api.Models
+namespace Studentify.Web.Services
 {
-     public interface ICourseRepository
+    public interface ICourseService
     {
         Task<IEnumerable<Course>> GetCourses();
-        Task<Course> GetCourse(int courseId);
     }
 }
