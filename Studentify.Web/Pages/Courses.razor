@@ -18,7 +18,6 @@
     }
     else
     {
-        @*<div class="card-deck">*@
         @foreach (var course in CoursesList)
         {
             <div class="card mb-3">
@@ -57,38 +56,9 @@
                 </div>
             </div>
         }
-        @*</div>*@
     }
 
 </div>
-
-
-
-
-
-
-
-
-
-@*<div class="card">
-        <h4 class="card-title">Name: @course.CourseName</h4>
-        <p>Description: @course.Description</p>
-        <img src="@course.ImageUrl" alt="@course.CourseName" />
-        <p>Id: @course.CourseId</p>
-
-        @if (course.Students.Any())
-        {
-            <p>There are currently @course.Students.Count() enrolled in this course</p>
-        }
-        else
-        {
-            <p>No students in this course yet</p>
-        }
-    </div>*@
-
-
-
-
 
 
 
