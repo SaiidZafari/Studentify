@@ -82,7 +82,7 @@ header div{
     display: flex;
     padding: 10px 0;
     margin: 0;
-    width: 250px;
+    width:auto;
 }
 
 .presentation-container ul li {

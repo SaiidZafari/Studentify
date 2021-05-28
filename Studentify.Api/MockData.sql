@@ -3,7 +3,7 @@ GO
 
 INSERT INTO [dbo].[Teachers] ([TeacherName], [ImageUrl])
 VALUES
-('John Doe', 'https://via.placeholder.com/200x320.png?text=John+Doe'),
+('John Doe', 'https://via.placeholder.com/180x200.png?text=John+Doe'),
 ('Jane Doe', NULL),
 ('Lars Erik Robert Tublen', NULL)
 GO
@@ -11,7 +11,7 @@ GO
 INSERT INTO [dbo].[Subjects] ([SubjectName], [Description], [ImageUrl])
 VALUES
 ('Math', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'https://via.placeholder.com/320x320.png?text=Subject+1'),
-('Web Dev', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'https://via.placeholder.com/320x320.png?text=Subject+1')
+('Web Dev', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'https://via.placeholder.com/320x320.png?text=Subject+2')
 GO
 
 INSERT INTO [dbo].[Courses] ([SubjectId], [TeacherId], [CourseName], [Description], [ImageUrl])
@@ -25,7 +25,7 @@ GO
 
 INSERT INTO [dbo].[Students] ([StudentName], [ImageUrl])
 VALUES
-('James Doe', 'https://via.placeholder.com/200x320.png?text=James+Doe'),
+('James Doe', 'https://via.placeholder.com/180x200.png?text=James+Doe'),
 ('Adrian', NULL),
 ('Jonathan', NULL),
 ('Mikael', NULL),
