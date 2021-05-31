@@ -141,4 +141,16 @@ header div{
     font-size: 25px;
 }
 
+.fa-user-graduate{
+    font-size: 40px;
+}
+
+.fixed-height-title{
+    height: 55px;
+    display: block;
+}
+
+.fixed-height-description{
+    height: 120px;
+}
 
