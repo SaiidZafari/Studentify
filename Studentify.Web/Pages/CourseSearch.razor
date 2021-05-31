@@ -1,8 +1,9 @@
-﻿@page "/courses"
+﻿@page "/Courses/search/{name}"
+
 @using Studentify.Models;
 @using Studentify.Web.Services;
-@inject ICourseService courseService;
 
+<h3>CourseSearch</h3>
 
 <form action="Courses/Search/Tim" method="get">
     <div class="input-group flex-center">
@@ -13,14 +14,14 @@
 
             @if (Courses == null)
             {
-                <div class="spinner"></div>
-               // <h3>Loading</h3>
+                //<div class="spinner"></div>
+                <h3>Loading</h3>
             }
             else
             {
                 if (@SearchTerm != null)
                 {
-                    <a href="@($"Courses/search/{SearchTerm}")" class="btn btn-primary">Search</a>
+                    <a href="@($"Courses/Search/{SearchTerm}")" class="btn btn-primary">Search</a>
                 }
                 else
                 {
@@ -191,18 +192,15 @@
     public IEnumerable<Course> Courses { get; set; }
 
     [Parameter]
-    public string SearchTerm { get; set; } = "";
+    public string SearchTerm { get; set; }
+
+
+    [Parameter]
+    public string name { get; set; }
+
 
     protected override async Task OnInitializedAsync()
     {
-        Courses = (await CourseService.GetCourses()).ToList();
+        Courses = (await CourseService.Search(name)).ToList();
     }
-
-
-    //private IEnumerable<Course> courses = null;
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    await base.OnInitializedAsync();
-    //    courses = await courseService.GetCourses();
-    //}
 }

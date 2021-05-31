@@ -20,5 +20,15 @@ namespace Studentify.Web.Services
         {
             return await httpClient.GetJsonAsync<Course[]>("api/courses");
         }
+
+        public async Task<Course> GetCourse(int id)
+        {
+            return await httpClient.GetJsonAsync<Course>($"api/courses/{id}");
+        }
+
+        public async Task<IEnumerable<Course>> Search(string name)
+        {
+            return await httpClient.GetJsonAsync<Course[]>($"api/Courses/search/{name}");
+        }
     }
 }
