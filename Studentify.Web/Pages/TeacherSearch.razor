@@ -79,19 +79,14 @@
 
 @code {
 
-        [Inject]
-        public ITeacherService TeacherService { get; set; }
+    [Inject]
+    public ITeacherService TeacherService { get; set; }
 
 
-        public IEnumerable<Teacher> Teachers { get; set; }
+    public IEnumerable<Teacher> Teachers { get; set; }
 
-        [Parameter]
-        public string SearchTerm { get; set; }
-
-        //protected override async Task OnInitializedAsync()
-        //{
-        //    Teachers = (await TeacherService.GetTeachers()).ToList();
-        //}
+    [Parameter]
+    public string SearchTerm { get; set; }
 
 
     [Parameter]
@@ -102,14 +97,6 @@
     {
         Teachers = (await TeacherService.Search(name)).ToList();
     }
-
-
-
-    //public override async Task SetParametersAsync(ParameterView parameters)
-    //{
-    //    Teachers = await TeacherService.Search(SearchTerm);
-
-    //}
 
 
 }

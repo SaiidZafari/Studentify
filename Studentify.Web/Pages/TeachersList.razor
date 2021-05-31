@@ -90,54 +90,6 @@
 
 
 
-
-
-
-
-
-@*@if (Teachers == null)
-    {
-        <div class="spiner"></div>
-    }
-    else
-    {
-    <div>
-     <table border="1">
-                <tr>
-                    <th>Teacher Name</th>
-                    <th>ImageUrl</th>
-               </tr>
-        @foreach (var teacher in Teachers)
-        {
-                <tr>
-                    <td>@teacher.TeacherName</td>
-                    <td>@teacher.ImageUrl</td>
-                </tr>
-        }</table>
-    </div>
-
-    <hr/>
-
-    <div class="card-deck">
-        @foreach (var teacher in Teachers)
-            {
-                <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
-                    <div class="card-header">
-                        <h3>@teacher.TeacherName</h3>
-                    </div>
-                    <img class="card-img-top imageThumbnail" src="@teacher.ImageUrl" />
-
-                </div>
-            }
-    </div>
-
-    }*@
-
-
-
-
-
-
 @code {
 
     [Inject]
@@ -154,17 +106,5 @@
         Teachers = (await TeacherService.GetTeachers()).ToList();
     }
 
-
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    Teachers = (await TeacherService.Search(SearchTerm)).ToList();
-    //}
-
-
-    //public override async Task SetParametersAsync(ParameterView parameters)
-    //{
-    //    Teachers = (await TeacherService.Search(SearchTerm)).ToList();
-
-    //}
 
 }
