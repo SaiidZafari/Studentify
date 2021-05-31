@@ -18,21 +18,21 @@ namespace Studentify.Api.Models
 
         public async Task<Teacher> AddTeacher(Teacher teacher)
         {
-            var result = await dbContext.Teachers.AddAsync(teacher);
+            var theTeacher = await dbContext.Teachers.AddAsync(teacher);
             await dbContext.SaveChangesAsync();
-            return result.Entity;
+            return theTeacher.Entity;
         }
 
         public async Task<Teacher> DeleteTeacher(int teacherId)
         {
-            var result = await dbContext.Teachers.FirstOrDefaultAsync(t => t.TeacherId == teacherId);
+            var theTeacher = await dbContext.Teachers.FirstOrDefaultAsync(t => t.TeacherId == teacherId);
 
-            if (result != null)
+            if (theTeacher != null)
             {
-                dbContext.Teachers.Remove(result);
+                dbContext.Teachers.Remove(theTeacher);
                 await dbContext.SaveChangesAsync();
 
-                return result;
+                return theTeacher;
             }
 
             return null;
@@ -47,7 +47,10 @@ namespace Studentify.Api.Models
 
         public async Task<IEnumerable<Teacher>> GetTeachers()
         {
-            return await dbContext.Teachers.ToListAsync();
+            //return await dbContext.Teachers.ToListAsync();
+            return await dbContext.Teachers
+                .Include(t => t.Courses)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Teacher>> Search(string name)
@@ -67,9 +70,23 @@ namespace Studentify.Api.Models
             return await query.ToListAsync();
         }
 
-        public Task<Teacher> UpdateTeacher(Teacher teacher)
+        public async Task<Teacher> UpdateTeacher(Teacher teacher)
         {
-            throw new NotImplementedException();
+            var theTeacher = await dbContext.Teachers
+               .FirstOrDefaultAsync(t => t.TeacherId == teacher.TeacherId);
+
+            if (theTeacher != null)
+            {
+                theTeacher.TeacherName = teacher.TeacherName;
+                theTeacher.ImageUrl = teacher.ImageUrl;
+                theTeacher.Courses = teacher.Courses;               
+
+                await dbContext.SaveChangesAsync();
+
+                return theTeacher;
+            }
+
+            return null;
         }
     }
 }

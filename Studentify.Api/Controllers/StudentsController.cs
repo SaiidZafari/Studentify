@@ -131,7 +131,7 @@ namespace Studentify.Api.Controllers
 
 
         //[HttpGet("{search}/{name}")]
-        [HttpGet("{name}")]
+        [HttpGet("search/{name}")]
         public async Task<ActionResult<IEnumerable<Student>>> Search(string name)
         {
             try

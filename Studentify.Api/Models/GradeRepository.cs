@@ -49,17 +49,19 @@ namespace Studentify.Api.Models
             return await dbContext.Grades.ToListAsync();
         }
 
-        //public async Task<IEnumerable<Grade>> Search(int number)
-        //{
-        //    IQueryable<Grade> query = dbContext.Grades;
+        public async Task<IEnumerable<Grade>> Search(string name)
+        {
+            IQueryable<Grade> query = dbContext.Grades;
 
-        //    if (!string.IsNullOrEmpty(name))
-        //    {
-        //        query = query.Where(g => g.StudentGrade == number);
-        //    }
+            if (query.Count<Grade>() > 0)
+            {
+                query = query.Where(g => g.StudentGrade == int.Parse(name));
+            }
 
-        //    return await query.ToListAsync();
-        //}
+            return await query.ToListAsync();
+        }
+
+       
 
         public Task<Grade> UpdateGrade(Grade grade)
         {

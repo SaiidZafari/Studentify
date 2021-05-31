@@ -1,25 +1,19 @@
-﻿@page "/teachers"
-@*@page "/teachers/Search/{SearchTeam?}"*@
+﻿@page "/Teachers/Search/{name}"
 
-@using Studentify.Models
 @using Studentify.Web.Services
-@using Microsoft.AspNetCore.Components;
-@using System.Collections.Generic;
-@using System.Linq;
-@using System.Threading.Tasks;
+@using Studentify.Models
+@using System.Threading.Tasks
 
-<h3>Teachers</h3>
+
+<h3>TeacherSearch</h3>
 
 <form action="Teachers/Search/Tim" method="get">
     <div class="input-group">
-        @*<input class="form-control" @bind="@SearchTerm" />*@
-        <input class="form-control" @bind-value="@SearchTerm"  />
-
+        @*<input class="form-control" @bind="@SearchTerm"  />*@
+        <input class="form-control" @bind-value="@SearchTerm" />
         <div class="input-group-append">
-
             @if (Teachers == null)
             {
-                //<div class="spinner"></div>
                 <h3>Loading</h3>
             }
             else
@@ -30,13 +24,9 @@
                 }
                 else
                 {
-
                     <a href="@($"Teachers")" class="btn btn-primary">Search</a>
                 }
-
             }
-
-
         </div>
     </div>
 </form>
@@ -46,8 +36,7 @@
     <div class="row pl-3">
         @if (Teachers == null)
         {
-            //<h3>Loading</h3>
-            <div class="spinner"></div>
+            <h3>Loading</h3>
         }
         else
         {
@@ -70,7 +59,7 @@
                 {
                     <div class="row">
                         <div class="col-3">
-                            <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(teacher.ImageUrl == null? "/images/default.png" : teacher.ImageUrl)" alt="@teacher.TeacherName" />
+                            <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(teacher.ImageUrl == null ? "/images/default.png" : teacher.ImageUrl)" alt="@teacher.TeacherName" />
                         </div>
                         <div class="col-7">
                             <h4>@teacher.TeacherName</h4>
@@ -88,83 +77,39 @@
 </div>
 
 
-
-
-
-
-
-
-
-@*@if (Teachers == null)
-    {
-        <div class="spiner"></div>
-    }
-    else
-    {
-    <div>
-     <table border="1">
-                <tr>
-                    <th>Teacher Name</th>
-                    <th>ImageUrl</th>
-               </tr>
-        @foreach (var teacher in Teachers)
-        {
-                <tr>
-                    <td>@teacher.TeacherName</td>
-                    <td>@teacher.ImageUrl</td>
-                </tr>
-        }</table>
-    </div>
-
-    <hr/>
-
-    <div class="card-deck">
-        @foreach (var teacher in Teachers)
-            {
-                <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
-                    <div class="card-header">
-                        <h3>@teacher.TeacherName</h3>
-                    </div>
-                    <img class="card-img-top imageThumbnail" src="@teacher.ImageUrl" />
-
-                </div>
-            }
-    </div>
-
-    }*@
-
-
-
-
-
-
 @code {
 
-    [Inject]
-    public ITeacherService TeacherService { get; set; }
+        [Inject]
+        public ITeacherService TeacherService { get; set; }
 
 
-    public IEnumerable<Teacher> Teachers { get; set; }
+        public IEnumerable<Teacher> Teachers { get; set; }
+
+        [Parameter]
+        public string SearchTerm { get; set; }
+
+        //protected override async Task OnInitializedAsync()
+        //{
+        //    Teachers = (await TeacherService.GetTeachers()).ToList();
+        //}
+
 
     [Parameter]
-    public string SearchTerm { get; set; } = "";
+    public string name { get; set; }
+
 
     protected override async Task OnInitializedAsync()
     {
-        Teachers = (await TeacherService.GetTeachers()).ToList();
+        Teachers = (await TeacherService.Search(name)).ToList();
     }
 
-
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    Teachers = (await TeacherService.Search(SearchTerm)).ToList();
-    //}
 
 
     //public override async Task SetParametersAsync(ParameterView parameters)
     //{
-    //    Teachers = (await TeacherService.Search(SearchTerm)).ToList();
+    //    Teachers = await TeacherService.Search(SearchTerm);
 
     //}
+
 
 }

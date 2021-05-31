@@ -43,13 +43,14 @@ namespace Studentify.Api.Models
         public async Task<Student> GetStudent(int studentId)
         {
             return await dbContext.Students
-                 .Include(s => s.Courses)
                  .FirstOrDefaultAsync(s => s.StudentId == studentId);
         }
 
         public async Task<IEnumerable<Student>> GetStudents()
         {
-            return await dbContext.Students.ToListAsync();
+            //return await dbContext.Students.ToListAsync();
+            return await dbContext.Students                
+                 .ToListAsync();
         }
 
         public async Task<IEnumerable<Student>> Search(string studentName)
@@ -65,9 +66,23 @@ namespace Studentify.Api.Models
             return await query.ToListAsync();
         }
 
-        public Task<Student> UpdateStudent(Student student)
+        public async Task<Student> UpdateStudent(Student student)
         {
-            throw new NotImplementedException();
+            var theStudent = await dbContext.Students
+               .FirstOrDefaultAsync(t => t.StudentId == student.StudentId);
+
+            if (theStudent != null)
+            {
+                theStudent.StudentName = student.StudentName;
+                theStudent.ImageUrl = student.ImageUrl;
+                theStudent.Courses = student.Courses;               
+
+                await dbContext.SaveChangesAsync();
+
+                return theStudent;
+            }
+
+            return null;
         }
 
     }

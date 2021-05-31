@@ -1,0 +1,52 @@
+﻿@page "/TeacherDetails/{id}"
+
+@*@inherits TeacherDetailsBase*@
+
+@using Studentify.Web.Services
+@using Studentify.Models
+@using System.Threading.Tasks
+
+<h3>Teacher Details</h3>
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Teacher.TeacherName</h1>
+            </div>
+
+            <div class="card-body text-center">
+                <img class="card-img-top" src="@Teacher.ImageUrl" />
+
+                <h4>Teacher ID : @Teacher.TeacherId</h4>
+                @foreach (var teacherCurse in @Teacher.Courses)
+                {                    
+                    <h4>Course : @teacherCurse.CourseName</h4>
+                }
+
+            </div>
+            <div class="card-footer text-center">
+                <a href="/Teachers" class="btn btn-primary">Back</a>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public Teacher Teacher { get; set; } = new Teacher();
+
+    [Inject]
+    public ITeacherService TeacherService { get; set; }
+
+    [Parameter]
+    public string Id { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Teacher = await TeacherService.GetTeacher(int.Parse(Id));
+    }
+
+}
