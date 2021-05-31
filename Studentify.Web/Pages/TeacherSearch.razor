@@ -1,0 +1,102 @@
+﻿@page "/Teachers/Search/{name}"
+
+@using Studentify.Web.Services
+@using Studentify.Models
+@using System.Threading.Tasks
+
+
+<h3>TeacherSearch</h3>
+
+<form action="Teachers/Search/Tim" method="get">
+    <div class="input-group">
+        @*<input class="form-control" @bind="@SearchTerm"  />*@
+        <input class="form-control" @bind-value="@SearchTerm" />
+        <div class="input-group-append">
+            @if (Teachers == null)
+            {
+                <h3>Loading</h3>
+            }
+            else
+            {
+                if (@SearchTerm != null)
+                {
+                    <a href="@($"Teachers/Search/{SearchTerm}")" class="btn btn-primary">Search</a>
+                }
+                else
+                {
+                    <a href="@($"Teachers")" class="btn btn-primary">Search</a>
+                }
+            }
+        </div>
+    </div>
+</form>
+
+
+<div class="container-fluid border p-2">
+    <div class="row pl-3">
+        @if (Teachers == null)
+        {
+            <h3>Loading</h3>
+        }
+        else
+        {
+            <div class="col-3 border mt-1">
+                <h4>Sort by</h4>
+                <form>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sort" value="name" checked />
+                        <label class="form-check-label" for="Name">Teacher Name</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sort" value="id" />
+                        <label class="form-check-label" for="id">Teacher Id</label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-9 pt-1">
+                @foreach (var teacher in Teachers)
+                {
+                    <div class="row">
+                        <div class="col-3">
+                            <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(teacher.ImageUrl == null ? "/images/default.png" : teacher.ImageUrl)" alt="@teacher.TeacherName" />
+                        </div>
+                        <div class="col-7">
+                            <h4>@teacher.TeacherName</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
+                        </div>
+                        <div class="col-2 d-flex flex-row">
+                            <a href="@($"TeacherDetails/{teacher.TeacherId}")" class="btn btn-secondary align-self-end">Details</a>
+                        </div>
+                    </div>
+                    <hr />
+                }
+            </div>
+        }
+    </div>
+</div>
+
+
+@code {
+
+    [Inject]
+    public ITeacherService TeacherService { get; set; }
+
+
+    public IEnumerable<Teacher> Teachers { get; set; }
+
+    [Parameter]
+    public string SearchTerm { get; set; }
+
+
+    [Parameter]
+    public string name { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        Teachers = (await TeacherService.Search(name)).ToList();
+    }
+
+
+}

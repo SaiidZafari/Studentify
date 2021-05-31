@@ -8,7 +8,13 @@ namespace Studentify.Models
 {
     public class Course
     {
-        public int CourseId { get; set; }
+        public int CourseId { get; set; } 
+        
+        public string CourseName { get; set; }
+
+        public string Description { get; set; }
+
+        public Uri ImageUrl { get; set; }
 
         public int SubjectId { get; set; }
 
@@ -16,10 +22,6 @@ namespace Studentify.Models
 
         public IEnumerable<Student> Students { get; set; } = new List<Student>();
 
-        public string CourseName { get; set; }
-
-        public string Description { get; set; }
-
-        public Uri ImageUrl { get; set; }
+       
     }
 }

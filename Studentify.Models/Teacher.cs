@@ -10,10 +10,16 @@ namespace Studentify.Models
     {
         public int TeacherId { get; set; }
 
-        public string TeacherName { get; set; }
-
-        public IEnumerable<Course> Courses { get; set; } = new List<Course>();
+        public string TeacherName { get; set; }        
 
         public Uri ImageUrl { get; set; }
+
+        //public int CourseId { get; set; }
+
+
+        //public Course Course { get; set; }
+
+        public IEnumerable<Course> Courses { get; set; } = new List<Course>();        
+
     }
 }

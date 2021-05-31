@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace Studentify.Api.Models
 {
-     public interface IcourseRepository
+    public interface ICourseRepository
     {
-        IEnumerable<Course> GetCourses();
-        Course GetCourse(int courseId);
+        Task<IEnumerable<Course>> Search(string name);
+
+        Task<IEnumerable<Course>> GetCourses();
+        Task<Course> GetCourse(int courseId);
+        Task<Course> AddCourse(Course course);
+        Task<Course> UpdateCourse(Course course);
+        Task<Course> DeleteCourse(int courseId);
     }
 }
