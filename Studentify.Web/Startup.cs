@@ -29,17 +29,22 @@ namespace Studentify.Web
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
+
+
             services.AddHttpClient<ITeacherService, TeacherService>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44394/");
 
             });
 
+
             services.AddHttpClient<IStudentService, StudentService>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44394");
 
             });
+
+                                  
 
             services.AddHttpClient<ICourseService, CourseService>(client =>
             {

@@ -9,38 +9,39 @@
 @using System.Threading.Tasks;
 
 <h3>Teachers</h3>
+<hr />
+    <form action="Teachers/Search/Tim" method="get">
+        <div class="input-group">
+            @*<input class="form-control" @bind="@SearchTerm" />*@
+            <input class="form-control" @bind-value="@SearchTerm" />
 
-<form action="Teachers/Search/Tim" method="get">
-    <div class="input-group">
-        @*<input class="form-control" @bind="@SearchTerm" />*@
-        <input class="form-control" @bind-value="@SearchTerm"  />
+            <div class="input-group-append">
 
-        <div class="input-group-append">
-
-            @if (Teachers == null)
-            {
-                //<div class="spinner"></div>
-                <h3>Loading</h3>
-            }
-            else
-            {
-                if (@SearchTerm != null)
+                @if (Teachers == null)
                 {
-                    <a href="@($"Teachers/Search/{SearchTerm}")" class="btn btn-primary">Search</a>
+                    <div class="spinner"></div>
+                    //<h3>Loading</h3>
                 }
                 else
                 {
+                    if (@SearchTerm != null)
+                    {
+                        <a href="@($"Teachers/Search/{SearchTerm}")" class="btn btn-primary">Search</a>
+                    }
+                    else
+                    {
 
-                    <a href="@($"Teachers")" class="btn btn-primary">Search</a>
+                        <a href="@($"/Teachers")" class="btn btn-primary">Search</a>
+                                               
+                    }
+
                 }
 
-            }
 
-
+            </div>
         </div>
-    </div>
-</form>
-
+    </form>
+<hr />
 
 <div class="container-fluid border p-2">
     <div class="row pl-3">

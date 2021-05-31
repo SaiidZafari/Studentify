@@ -1,13 +1,53 @@
 ﻿@page "/Students"
 @using Studentify.Models;
 @using Studentify.Web.Services;
-@inject IStudentService studentService;
+@using Microsoft.AspNetCore.Components;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Threading.Tasks;
+
 
 <h1>Students</h1>
 
+<hr />
+<form action="Students/Search/Tim" method="get">
+    <div class="input-group">
+        @*<input class="form-control" @bind="@SearchTerm" />*@
+        <input class="form-control" @bind-value="@SearchTerm" />
+
+        <div class="input-group-append">
+
+            @if (Students == null)
+            {
+                <div class="spinner"></div>
+                //<h3>Loading</h3>
+            }
+            else
+            {
+                if (@SearchTerm != null)
+                {
+                    <a href="@($"Students/Search/{SearchTerm}")" class="btn btn-primary">Search</a>
+                }
+                else
+                {
+
+                    <a href="@($"/Students")" class="btn btn-primary">Search</a>
+
+                }
+
+            }
+
+
+        </div>
+    </div>
+</form>
+<hr />
+
+
+
 <div class="container-fluid border p-2">
     <div class="row pl-3">
-        @if (students == null)
+        @if (Students == null)
         {
             <h3>Loading</h3>
         }
@@ -27,7 +67,7 @@
                 </form>
             </div>
             <div class="col-9 pt-1">
-                @foreach (var student in students)
+                @foreach (var student in Students)
                 {
                     <div class="row">
                         <div class="col-3">
@@ -50,10 +90,25 @@
 
 @code
 {
-    private IEnumerable<Student> students = null;
+    [Inject]
+    public IStudentService StudentService { get; set; }
+
+
+    public IEnumerable<Student> Students { get; set; }
+
+    [Parameter]
+    public string SearchTerm { get; set; } = "";
+
     protected override async Task OnInitializedAsync()
     {
-        await base.OnInitializedAsync();
-        students = await studentService.GetStudents();
+        Students = (await StudentService.GetStudents()).ToList();
     }
+
+
+    //private IEnumerable<Student> students = null;
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    await base.OnInitializedAsync();
+    //    students = await StudentService.GetStudents();
+    //}
 }
