@@ -153,6 +153,19 @@ header div{
     position: absolute;
 }
 
+.fa-user-graduate{
+    font-size: 40px;
+}
+
+.fixed-height-title{
+    height: 55px;
+    display: block;
+}
+
+.fixed-height-description{
+    height: 120px;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg)
