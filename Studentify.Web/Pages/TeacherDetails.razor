@@ -28,7 +28,8 @@
             <div class="card-footer text-center">
                 <a href="/Teachers" class="btn btn-primary">Back</a>
                 <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+                @*<a href="#" class="btn btn-danger" @onclick="Delete_Teacher">Delete</a>*@
+                <button type="button" class="btn btn-danger m-1" @onclick="Delete_Teacher"> Delete </button>
             </div>
         </div>
     </div>
@@ -44,9 +45,23 @@
     [Parameter]
     public string Id { get; set; }
 
+    [Parameter]
+    public EventCallback<int> OnTeacherDeleted { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+
     protected async override Task OnInitializedAsync()
     {
         Teacher = await TeacherService.GetTeacher(int.Parse(Id));
+    }
+
+    protected async Task Delete_Teacher()
+    {
+        await TeacherService.DeleteTeacher(Teacher.TeacherId);
+        await OnTeacherDeleted.InvokeAsync(Teacher.TeacherId);
+        NavigationManager.NavigateTo("/Teachers", true);
     }
 
 }
