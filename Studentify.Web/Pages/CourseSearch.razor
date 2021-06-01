@@ -1,39 +1,22 @@
-﻿@page "/Courses/search/{name}"
+﻿@page "/Courses/{name}"
 
 @using Studentify.Models;
 @using Studentify.Web.Services;
 
-<h3>CourseSearch</h3>
+<h3>Search</h3>
 
-<form action="Courses/Search/Tim" method="get">
+<hr />
+@*Action Will bind search to http *@
+<form action="/Courses/@SearchTerm" method="get">
     <div class="input-group flex-center">
-        @*<input class="form-control" @bind="@SearchTerm" />*@
         <input class="form-control" @bind-value="@SearchTerm" />
-
         <div class="input-group-append">
-
-            @if (Courses == null)
-            {
-                //<div class="spinner"></div>
-                <h3>Loading</h3>
-            }
-            else
-            {
-                if (@SearchTerm != null)
-                {
-                    <a href="@($"Courses/Search/{SearchTerm}")" class="btn btn-primary">Search</a>
-                }
-                else
-                {
-
-                    <a href="@($"Courses")" class="btn btn-primary">Search</a>
-                }
-            }
-
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a href="@($"/teachers")" class="btn btn-success">Back to TeacherList</a>
         </div>
     </div>
 </form>
-
+<hr />
 
 
 
