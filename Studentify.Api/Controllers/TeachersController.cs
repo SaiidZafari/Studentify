@@ -129,6 +129,8 @@ namespace Studentify.Api.Controllers
         }
 
 
+
+
         //[HttpGet("{search}/{name}")]
         [HttpGet("search/{name}")]
         public async Task<ActionResult<IEnumerable<Teacher>>> Search(string name)

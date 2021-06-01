@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Studentify.Web.Services
 {
-    interface ICourseService
+     public interface ICourseService
     {
         Task<IEnumerable<Course>> GetCourses();
     }

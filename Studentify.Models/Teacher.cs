@@ -12,7 +12,7 @@ namespace Studentify.Models
 
         public string TeacherName { get; set; }        
 
-        public Uri ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         //public int CourseId { get; set; }
 
