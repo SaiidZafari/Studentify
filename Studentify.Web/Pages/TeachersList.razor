@@ -10,36 +10,17 @@
 
 <h3>Teachers</h3>
 
-<form action="Teachers/Search/Tim" method="get">
+<hr />
+@*Action Will bind search to http *@
+<form action="/teachers/@SearchTerm" method="get">
     <div class="input-group flex-center">
-        @*<input class="form-control" @bind="@SearchTerm" />*@
-        <input class="form-control" @bind-value="@SearchTerm"  />
-
+        <input class="form-control" @bind-value="@SearchTerm" />
         <div class="input-group-append">
-
-            @if (Teachers == null)
-            {
-                //<div class="spinner"></div>
-                <h3>Loading</h3>
-            }
-            else
-            {
-                if (@SearchTerm != null)
-                {
-                    <a href="@($"Teachers/Search/{SearchTerm}")" class="btn btn-primary">Search</a>
-                }
-                else
-                {
-
-                    <a href="@($"Teachers")" class="btn btn-primary">Search</a>
-                }
-
-            }
-
-
+            <button type="submit" class="btn btn-primary">Search</button>
         </div>
     </div>
 </form>
+<hr />
 
 
 <div class="container-fluid border p-2">

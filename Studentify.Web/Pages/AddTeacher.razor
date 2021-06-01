@@ -1,12 +1,58 @@
-﻿@page "/Teachers/addteacher"
+﻿@page "/Teachers/addteacher/{id}"
 
 @using Studentify.Web.Services
 @using Studentify.Models
 @using System.Threading.Tasks
 
-<form model="@Teacher" method="post">
-    <h3>Add Teacher</h3>
+@*<form model="@Teacher" method="post">
+        <h3>Add Teacher</h3>
+        <hr />
+        <div class="form-group row">
+            <label for="TeacherName" class="col-sm-2 col-form-label">
+                TeacherName
+            </label>
+            <div class="col-sm-10">
+                <InputText id="TeacherName" class="form-control" placeholder="TeacherName"
+                           @bind-Value="Teacher.TeacherName" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="ImageUrl" class="col-sm-2 col-form-label">
+                Email
+            </label>
+            <div class="col-sm-10">
+                <InputText id="ImageUrl" class="form-control" placeholder="ImageUrl"
+                           @bind-Value="Teacher.ImageUrl" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="ImageUrl" class="col-sm-2 col-form-label">
+                Courses
+            </label>
+            <div class="col-sm-10">
+                <InputSelect class="form-control" @bind-Value="@Courses">
+                    @foreach (var course in Courses)
+                    {
+                        <option value="@course.CourseName">@course.CourseName</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+
+    </form>*@
+
+@*<EditForm Model="@Teacher">
+    <h3>Edit Teacher</h3>
     <hr />
+    <div class="form-group row">
+        <label for="TeacherId" class="col-sm-2 col-form-label">
+            TeacherId
+        </label>
+        <div class="col-sm-10">
+            <InputNumber id="TeacherId" class="form-control" placeholder="TeacherId"
+                         @bind-Value="Teacher.TeacherId" />
+        </div>
+    </div>
     <div class="form-group row">
         <label for="TeacherName" class="col-sm-2 col-form-label">
             TeacherName
@@ -38,48 +84,27 @@
             </InputSelect>
         </div>
     </div>
+    <a href="#" class="btn btn-success">Save</a>
+</EditForm>*@
 
-</form>
+
 
 
 
 @code {
 
-    [Inject]
-    public ITeacherService TeacherService { get; set; }
-
-    public Teacher Teacher { get; set; } = new Teacher();
-
-
-    //public Course Course { get; set; }
-
     //[Inject]
-    //public ICourseService CourseService { get; set; }
+    //public ITeacherService TeacherService { get; set; }
 
-    //public List<Course> Courses { get; set; } = new List<Course>();
+    //public Teacher Teacher { get; set; } = new Teacher();
+
+    //public IEnumerable<Course> Courses { get; set; }
 
     //[Parameter]
     //public string Id { get; set; }
 
     //protected async override Task OnInitializedAsync()
     //{
-    //    int.TryParse(Id, out int employeeId);
-
-    //    if (employeeId != 0)
-    //    {
-    //        Teacher = await TeacherService.GetTeacher(int.Parse(Id));
-    //    }
-    //    else
-    //    {
-    //        Teacher = new Teacher
-    //        {
-    //            TeacherName = @Teacher.TeacherName,
-    //            ImageUrl = @Teacher.ImageUrl,
-    //            Courses = @Teacher.Courses
-    //        };
-    //    }
-
-    //Courses = (await CourseService.GetCourses()).ToList();
-    //Mapper.Map(Teacher, EditTeacherModel);
-}
+    //    Teacher = await TeacherService.GetTeacher(int.Parse(Id));
+    //}
 }

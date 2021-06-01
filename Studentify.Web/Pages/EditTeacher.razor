@@ -4,7 +4,7 @@
 @using Studentify.Models
 @using System.Threading.Tasks
 
-<form model="@Teacher" method="post">
+@*<form model="@Teacher" method="post">
     <h3>Add Teacher</h3>
     <hr />
     <div class="form-group row">
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-</form>
+</form>*@
 
 <EditForm Model="@Teacher">
     <h3>Edit Teacher</h3>
@@ -76,7 +76,7 @@
             Courses
         </label>
         <div class="col-sm-10">
-            <InputSelect  class="form-control" @bind-Value="@Teacher.Courses">
+            <InputSelect class="form-control" @bind-Value="@Teacher.Courses">
                 @foreach (var course in Teacher.Courses)
                 {
                     <option value="@course.CourseName">@course.CourseName</option>
@@ -84,6 +84,7 @@
             </InputSelect>
         </div>
     </div>
+    <a href="#" class="btn btn-success">Save</a>
 </EditForm>
 
 
