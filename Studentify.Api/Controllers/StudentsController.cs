@@ -137,12 +137,16 @@ namespace Studentify.Api.Controllers
             try
             {
                 var result = await studentRepository.Search(name);
-                if (result.Any())
+                if (result != null)
                 {
                     return Ok(result);
                 }
+                else
+                {
+                    return NotFound();
+                }
 
-                return NotFound();
+                
             }
             catch (Exception)
             {
