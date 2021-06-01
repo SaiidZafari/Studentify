@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Studentify.Web.Services
 {
-    interface ICourseService
+     public interface ICourseService
     {
         Task<IEnumerable<Course>> GetCourses();
+
+        Task<Course> GetCourse(int id);
+
+        Task<IEnumerable<Course>> Search(string name);
     }
 }
