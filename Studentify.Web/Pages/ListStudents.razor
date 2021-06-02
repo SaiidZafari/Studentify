@@ -1,6 +1,7 @@
 ﻿@page "/Students"
 
 @inject IStudentService studentService
+@inject NavigationManager navigationManager
 
 <h1>Students</h1>
 
@@ -37,7 +38,7 @@
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
                         </div>
                         <div class="col-2 d-flex flex-row">
-                            <button class="btn btn-secondary align-self-end">Details</button>
+                            <a href="@($"/StudentDetails/{student.StudentId}")" class="btn btn-secondary align-self-end">Details</a>
                         </div>
                     </div>
                     <hr />

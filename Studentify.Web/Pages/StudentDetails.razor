@@ -21,8 +21,8 @@
             </div>
             <div class="card-footer text-center">
                 <a href="/Teachers" class="btn btn-primary">Back</a>
-                <a href="#" class="btn btn-primary">Edit</a>
-                @*<button type="button" class="btn btn-danger m-1" @onclick="Delete_Teacher"> Delete </button>*@
+                <a href="#" class="btn btn-primary">Edit</a>                
+                <a href="#" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
@@ -30,17 +30,13 @@
 
 @code {
 
-    public Student Student { get; set; }
+    public Student Student { get; set; } = new Student();
 
     [Inject]
     public IStudentService StudentService { get; set; }
 
     [Parameter]
     public string Id { get; set; }
-
-    //Not implemented yet
-    //[Parameter]
-    //public EventCallback<int> OnTeacherDeleted { get; set; }
 
     [Inject]
     public NavigationManager NavigationManager { get; set; }
@@ -50,12 +46,4 @@
     {
         Student = await StudentService.GetStudent(int.Parse(Id));
     }
-
-    //protected async Task Delete_Teacher()
-    //{
-    //    await TeacherService.DeleteTeacher(Teacher.TeacherId);
-    //    await OnTeacherDeleted.InvokeAsync(Teacher.TeacherId);
-    //    NavigationManager.NavigateTo("/Teachers", true);
-    //}
-
 }
