@@ -1,27 +1,28 @@
 ﻿@page "/StudentDetails/{id}"
-
-<h3>Student Details</h3>
+@*<h3>Student Details</h3>*@
 
 <div class="row justify-content-center m-3">
     <div class="col-sm-4">
         <div class="card">
+
             <div class="card-header">
                 <h1>@Student.StudentName</h1>
             </div>
 
-            <div class="card-body text-center">
-                <img class="card-img-top" src="@Student.ImageUrl" />
+            <div class="card-body">
+                <img class="card-img-top" src="@(Student.ImageUrl == null? "/images/default.png" : Student.ImageUrl)" alt="@Student.StudentName" />
 
-                <h4>Student ID : @Student.StudentId</h4>
+                <p class="font-weight-bold mb-0 pt-2">Student Id</p>
+                <p class="mb-0">@Student.StudentId</p>
+                <p class="font-weight-bold mb-0 pt-2">Enrolled in courses</p>
                 @foreach (var course in Courses)
                 {
-                    <h4>Course : @course.CourseName</h4>
+                    <p class="mb-0">@course.CourseName</p>
                 }
-
             </div>
             <div class="card-footer text-center">
                 <a href="/students" class="btn btn-primary">Back</a>
-                <a href="#" class="btn btn-primary">Edit</a>                
+                <a href="#" class="btn btn-primary">Edit</a>
                 <a href="#" class="btn btn-danger">Delete</a>
             </div>
         </div>
@@ -54,8 +55,4 @@
         Courses = await CourseService.GetStudentCourses(Student.StudentId);
 
     }
-
-
-
-
 }

@@ -69,8 +69,6 @@ namespace Studentify.Api.Models
 
         public async Task<IEnumerable<Course>> GetStudentCourses(int studentId)
         {
-            //return await dbContext.Students.Include(s => s.Courses).Where(s => s.StudentId == studentId).Select(c => c.Courses).ToListAsync();
-
             var query = dbContext.Students.Include(s => s.Courses).Where(s => s.StudentId == studentId).SelectMany(c => c.Courses);
 
             return await query.ToListAsync();
