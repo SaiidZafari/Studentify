@@ -3,6 +3,8 @@
 @using Studentify.Web.Services
 @using Studentify.Models
 @using System.Threading.Tasks
+@using Studentify.Web.Models
+@using AutoMapper;
 
 @*<form model="@Teacher" method="post">
     <h3>Add Teacher</h3>
@@ -100,11 +102,16 @@
 
     public IEnumerable<Course> Courses { get; set; } 
 
+    [Inject]
+    public IMapper Mapper { get; set; }
+
     [Parameter]
     public string Id { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
         Teacher = await TeacherService.GetTeacher(int.Parse(Id));
+
+        Mapper.Map(Teacher, EditTeacherModel);
     }
 }
