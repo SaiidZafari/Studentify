@@ -13,5 +13,7 @@ namespace Studentify.Web.Services
         Task<Course> GetCourse(int id);
 
         Task<IEnumerable<Course>> Search(string name);
+
+        Task<IEnumerable<Course>> GetStudentCourses(int studentId);
     }
 }
