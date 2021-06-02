@@ -1,7 +1,6 @@
 ﻿@page "/Students"
-@using Studentify.Models;
-@using Studentify.Web.Services;
-@inject IStudentService studentService;
+
+@inject IStudentService studentService
 
 <h1>Students</h1>
 
@@ -9,7 +8,7 @@
     <div class="row pl-3">
         @if (students == null)
         {
-            <h3>Loading</h3>
+            <div class="spinner"></div>
         }
         else
         {
@@ -51,6 +50,7 @@
 @code
 {
     private IEnumerable<Student> students = null;
+
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
