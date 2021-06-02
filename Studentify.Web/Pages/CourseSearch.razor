@@ -1,16 +1,18 @@
-﻿@page "/courses"
+﻿@page "/Courses/{name}"
+
 @using Studentify.Models;
 @using Studentify.Web.Services;
-@inject ICourseService courseService;
 
+<h3>Search</h3>
 
 <hr />
 @*Action Will bind search to http *@
-<form action="/courses/@SearchTerm" method="get">
+<form action="/Courses/@SearchTerm" method="get">
     <div class="input-group flex-center">
         <input class="form-control" @bind-value="@SearchTerm" />
         <div class="input-group-append">
             <button type="submit" class="btn btn-primary">Search</button>
+            <a href="@($"/teachers")" class="btn btn-success">Back to TeacherList</a>
         </div>
     </div>
 </form>
@@ -26,8 +28,7 @@
     <div class="row pl-3">
         @if (Courses == null)
         {
-            //<h3>Loading</h3>
-            <div class="spinner"></div>
+            <h3>Loading</h3>
         }
         else
         {
@@ -37,9 +38,9 @@
                 {
                     <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
                         @*<div class="card-header">
-                            <h3>@course.CourseName</h3>
+                                <h3>@course.CourseName</h3>
 
-                        </div>*@
+                            </div>*@
 
                         <img class="card-img-top imageThumbnail" src="https://mdbootstrap.com/img/Photos/Others/images/51.jpg" />
 
@@ -75,10 +76,10 @@
 
 
 
-            @* <div class="container-fluid background-r">
+            <div class="container-fluid background-r">
                 <div class="container py-3">
 
-                    Section: Blog v.2
+                    <!--Section: Blog v.2-->
                     <section class="extra-margins text-center">
 
                         <h2 class="text-center mb-5 my-5 pt-4 pb-4 font-weight-bold"> Top courses</h2>
@@ -89,25 +90,25 @@
 
                                 <div class="mx-1 mb-4 wow fadeIn" data-wow-delay="0.4s">
 
-                                    Card Light
+                                    <!--Card Light-->
                                     <div class="card">
-                                        Card image
+                                        <!--Card image-->
                                         <div class="view overlay">
                                             <img src="https://mdbootstrap.com/img/Photos/Others/images/51.jpg" class="card-img-top" alt="">
                                             <a>
                                                 <div class="mask rgba-white-slight"></div>
                                             </a>
                                         </div>
-                                        /.Card image
-                                        Card content
+                                        <!--/.Card image-->
+                                        <!--Card content-->
                                         <div class="card-body">
 
-                                            Title
+                                            <!--Title-->
                                             <h4 class="card-title darkgrey-text">
                                                 <strong class="fixed-height-title">@course.CourseName</strong>
                                             </h4>
                                             <hr>
-                                            Text
+                                            <!--Text-->
                                             <p class="font-small fixed-height-description">
                                                 @course.Description
                                             </p>
@@ -118,9 +119,9 @@
                                                 </p>
                                             </a>
                                         </div>
-                                        /.Card content
+                                        <!--/.Card content-->
                                     </div>
-                                    /.Card Light
+                                    <!--/.Card Light-->
 
                                 </div>
                             }
@@ -130,7 +131,7 @@
             </div>
 
 
-            <div class="col-3 border mt-1">
+            @*<div class="col-3 border mt-1">
                     <h4>Sort by</h4>
                     <form>
                         <div class="form-check">
@@ -174,18 +175,15 @@
     public IEnumerable<Course> Courses { get; set; }
 
     [Parameter]
-    public string SearchTerm { get; set; } = "";
+    public string SearchTerm { get; set; }
+
+
+    [Parameter]
+    public string name { get; set; }
+
 
     protected override async Task OnInitializedAsync()
     {
-        Courses = (await CourseService.GetCourses()).ToList();
+        Courses = (await CourseService.Search(name)).ToList();
     }
-
-
-    //private IEnumerable<Course> courses = null;
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    await base.OnInitializedAsync();
-    //    courses = await courseService.GetCourses();
-    //}
 }
