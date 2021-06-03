@@ -24,7 +24,7 @@ namespace Studentify.Api.Models
 
         public DbSet<Grade> Grades { get; set; }
 
-        public DbSet<EditTeacherModel> EditTeacherModels { get; set; }
+       
 
     }
 }

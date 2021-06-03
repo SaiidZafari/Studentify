@@ -100,7 +100,7 @@
 
     public Teacher Teacher { get; set; } = new Teacher();
 
-    public IEnumerable<Course> Courses { get; set; } 
+    public IEnumerable<Course> Courses { get; set; }
 
     [Inject]
     public IMapper Mapper { get; set; }
@@ -112,6 +112,6 @@
     {
         Teacher = await TeacherService.GetTeacher(int.Parse(Id));
 
-        Mapper.Map(Teacher, EditTeacherModel);
+        // Mapper.Map(Teacher, EditTeacherModel);
     }
 }
