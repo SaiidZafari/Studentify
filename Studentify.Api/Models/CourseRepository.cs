@@ -66,5 +66,14 @@ namespace Studentify.Api.Models
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<Course>> GetStudentCourses(int studentId)
+        {
+            var query = dbContext.Students.Include(s => s.Courses).Where(s => s.StudentId == studentId).SelectMany(c => c.Courses);
+
+            return await query.ToListAsync();
+        }
+
+
     }
 }
