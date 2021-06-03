@@ -1,13 +1,27 @@
 ﻿@page "/Students"
 
-@inject IStudentService studentService
+
 @inject NavigationManager navigationManager
 
 <h1>Students</h1>
 
+<hr />
+ @*Action Will bind search to http *@
+<form action="/students/@SearchTerm"  method="get">
+    <div class="input-group flex-center">
+        <input class="form-control" @bind-value="@SearchTerm"  />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary"> Search </button>
+        </div>
+    </div>
+</form>
+<hr />
+
+
+
 <div class="container-fluid border p-2">
     <div class="row pl-3">
-        @if (students == null)
+        @if (Students == null)
         {
             <div class="spinner"></div>
         }
@@ -27,7 +41,7 @@
                 </form>
             </div>
             <div class="col-9 pt-1">
-                @foreach (var student in students)
+                @foreach (var student in Students)
                 {
                     <div class="row">
                         <div class="col-3">
@@ -50,11 +64,25 @@
 
 @code
 {
-    private IEnumerable<Student> students = null;
+    [Inject]
+    public IStudentService StudentService { get; set; }
+
+
+    public IEnumerable<Student> Students { get; set; } = null;
+
+    [Parameter]
+    public string SearchTerm { get; set; } 
 
     protected override async Task OnInitializedAsync()
     {
-        await base.OnInitializedAsync();
-        students = await studentService.GetStudents();
+        Students = (await StudentService.GetStudents()).ToList();
     }
+
+
+    //private IEnumerable<Student> students = null;
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    await base.OnInitializedAsync();
+    //    students = await StudentService.GetStudents();
+    //}
 }

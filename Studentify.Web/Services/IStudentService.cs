@@ -1,4 +1,4 @@
-﻿using Studentify.Models;
+using Studentify.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,5 +9,7 @@ namespace Studentify.Web.Services
         Task<IEnumerable<Student>> GetStudents();
 
         Task<Student> GetStudent(int id);
+
+        Task<IEnumerable<Student>> Search(string name);
     }
 }

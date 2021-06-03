@@ -42,13 +42,13 @@ namespace Studentify.Web
 
             });
 
+
             services.AddHttpClient<IStudentService, StudentService>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44394");
 
             });
 
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

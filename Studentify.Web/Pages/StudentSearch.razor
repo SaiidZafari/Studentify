@@ -1,4 +1,4 @@
-@page "/Teachers/{name}"
+﻿@page "/Students/{name}"
 
 @using Studentify.Models;
 @using Studentify.Web.Services;
@@ -8,25 +8,26 @@
 @using System.Threading.Tasks;
 
 
-<h3>TeacherSearch</h3>
+<h3>Student Search</h3>
 
 <hr />
 @*Action Will bind search to http *@
-<form action="/teachers/@SearchTerm" method="get">
+<form action="/students/@SearchTerm" method="get">
     <div class="input-group flex-center">
         <input class="form-control" @bind-value="@SearchTerm" />
         <div class="input-group-append">
             <button type="submit" class="btn btn-primary">Search</button>
-            <a href="@($"/teachers")" class="btn btn-success">Back to TeacherList</a>
+            <a href="@($"/Students")" class="btn btn-success">Back to StudentList</a>
         </div>
     </div>
 </form>
 <hr />
 
 
+
 <div class="container-fluid border p-2">
     <div class="row pl-3">
-        @if (Teachers == null)
+        @if (Students == null)
         {
             <h3>Loading</h3>
         }
@@ -37,28 +38,27 @@
                 <form>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="sort" value="name" checked />
-                        <label class="form-check-label" for="Name">Teacher Name</label>
+                        <label class="form-check-label" for="Name">Student Name</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="sort" value="id" />
-                        <label class="form-check-label" for="id">Teacher Id</label>
+                        <label class="form-check-label" for="id">Student Id</label>
                     </div>
                 </form>
             </div>
-
             <div class="col-9 pt-1">
-                @foreach (var teacher in Teachers)
+                @foreach (var student in Students)
                 {
                     <div class="row">
                         <div class="col-3">
-                            <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(teacher.ImageUrl == null ? "/images/default.png" : teacher.ImageUrl)" alt="@teacher.TeacherName" />
+                            <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(student.ImageUrl == null? "/images/default.png" : student.ImageUrl)" alt="@student.StudentName" />
                         </div>
                         <div class="col-7">
-                            <h4>@teacher.TeacherName</h4>
+                            <h4>@student.StudentName</h4>
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
                         </div>
                         <div class="col-2 d-flex flex-row">
-                            <a href="@($"TeacherDetails/{teacher.TeacherId}")" class="btn btn-secondary align-self-end">Details</a>
+                            <button class="btn btn-secondary align-self-end">Details</button>
                         </div>
                     </div>
                     <hr />
@@ -68,14 +68,14 @@
     </div>
 </div>
 
-
-@code {
+@code
+{
 
     [Inject]
-    public ITeacherService TeacherService { get; set; }
+    public IStudentService StudentService { get; set; }
 
 
-    public IEnumerable<Teacher> Teachers { get; set; }
+    public IEnumerable<Student> Students { get; set; }
 
     [Parameter]
     public string SearchTerm { get; set; }
@@ -87,8 +87,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Teachers = (await TeacherService.Search(name)).ToList();
+        Students = (await StudentService.Search(name)).ToList();
     }
-
 
 }
