@@ -17,6 +17,11 @@ namespace Studentify.Web.Services
             this.httpClient = httpClient;
         }
 
+        public async Task DeleteTeacher(int id)
+        {
+            await httpClient.DeleteAsync($"api/Teachers/{id}");
+        }
+
         public async Task<Teacher> GetTeacher(int id)
         {
             return await httpClient.GetJsonAsync<Teacher>($"api/Teachers/{id}");

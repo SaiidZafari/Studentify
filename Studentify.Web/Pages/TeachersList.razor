@@ -1,5 +1,4 @@
-﻿@page "/teachers"
-@*@page "/teachers/Search/{SearchTeam?}"*@
+@page "/teachers"
 
 @using Studentify.Models
 @using Studentify.Web.Services
@@ -15,7 +14,7 @@
     <div class="input-group flex-center">
         <input class="form-control" @bind-value="@SearchTerm" />
         <div class="input-group-append">
-            <button type="submit" class="btn btn-primary"> Search </button>
+            <button type="submit" class="btn btn-primary">Search</button>
         </div>
     </div>
 </form>
@@ -26,8 +25,7 @@
     <div class="row pl-3">
         @if (Teachers == null)
         {
-            <h3>Loading</h3>
-            // <div class="spinner"></div>
+            <div class="spinner"></div>
         }
         else
         {

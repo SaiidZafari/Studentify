@@ -136,7 +136,6 @@ namespace Studentify.Api.Controllers
             try
             {
                 var result = await teacherRepository.Search(name);
-                //if (result.Any())
                 if (result != null)
                 {
                     return Ok(result);

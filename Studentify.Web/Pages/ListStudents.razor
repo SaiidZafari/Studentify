@@ -1,8 +1,7 @@
 ﻿@page "/Students"
-@using Studentify.Models;
-@using Studentify.Web.Services;
-@using System.Threading.Tasks;
 
+
+@inject NavigationManager navigationManager
 
 <h1>Students</h1>
 
@@ -24,7 +23,7 @@
     <div class="row pl-3">
         @if (Students == null)
         {
-            <h3>Loading</h3>
+            <div class="spinner"></div>
         }
         else
         {
@@ -53,7 +52,7 @@
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
                         </div>
                         <div class="col-2 d-flex flex-row">
-                            <button class="btn btn-secondary align-self-end">Details</button>
+                            <a href="@($"/StudentDetails/{student.StudentId}")" class="btn btn-secondary align-self-end">Details</a>
                         </div>
                     </div>
                     <hr />
@@ -69,7 +68,7 @@
     public IStudentService StudentService { get; set; }
 
 
-    public IEnumerable<Student> Students { get; set; }
+    public IEnumerable<Student> Students { get; set; } = null;
 
     [Parameter]
     public string SearchTerm { get; set; } 

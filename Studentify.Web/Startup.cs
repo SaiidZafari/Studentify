@@ -30,6 +30,11 @@ namespace Studentify.Web
             services.AddServerSideBlazor();
 
 
+            services.AddHttpClient<ICourseService, CourseService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44394");
+            });
+
 
             services.AddHttpClient<ITeacherService, TeacherService>(client =>
             {
@@ -44,12 +49,6 @@ namespace Studentify.Web
 
             });
 
-                                  
-
-            services.AddHttpClient<ICourseService, CourseService>(client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:44394");
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

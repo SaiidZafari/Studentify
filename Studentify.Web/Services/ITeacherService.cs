@@ -13,5 +13,7 @@ namespace Studentify.Web.Services
         Task<Teacher> GetTeacher(int id);
 
         Task<IEnumerable<Teacher>> Search(string name);
+
+        Task DeleteTeacher(int id);
     }
 }

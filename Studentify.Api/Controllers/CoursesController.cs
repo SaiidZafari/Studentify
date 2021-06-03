@@ -150,7 +150,11 @@ namespace Studentify.Api.Controllers
         }
 
 
-
+        [HttpGet("studentCourse/{studentId:int}")]
+        public async Task<ActionResult<IEnumerable<Course>>> GetStudentCourses(int studentId)
+        {
+            return Ok(await courseRepository.GetStudentCourses(studentId));
+        }
 
 
 

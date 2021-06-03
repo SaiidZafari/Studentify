@@ -15,5 +15,6 @@ namespace Studentify.Api.Models
         Task<Course> AddCourse(Course course);
         Task<Course> UpdateCourse(Course course);
         Task<Course> DeleteCourse(int courseId);
+        Task<IEnumerable<Course>> GetStudentCourses(int studentId);
     }
 }
