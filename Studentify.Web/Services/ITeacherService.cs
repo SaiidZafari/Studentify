@@ -18,6 +18,6 @@ namespace Studentify.Web.Services
 
         Task DeleteTeacher(int id);
 
-        Task<Teacher> CreateTeacher(Teacher teacher);
+        Task<Teacher> CreateTeacher(Teacher newTeacher);
     }
 }

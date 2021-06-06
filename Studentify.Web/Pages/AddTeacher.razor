@@ -1,56 +1,53 @@
-﻿@page "/Teachers/addteacher"
+﻿@page "/Teachers/AddTeacher/{id}"
+
+@page "/Teachers/AddTeacher"
 
 @using Studentify.Web.Services
 @using Studentify.Models
 @using System.Threading.Tasks
+@using Studentify.Web.Models
+@using AutoMapper;
 
 
-<form action="api/teachers" model="@Teacher" method="post">
+<EditForm Model="@EditTeacherModel" OnValidSubmit="HandleValidSubmit">
+    @*<ObjectGraphDataAnnotationsValidator />*@
     <h3>Add Teacher</h3>
     <hr />
-
+    <ValidationSummary />
     <div class="form-group row">
-        <label for="TeacherName" class="col-sm-2 col-form-label">
-            Teachername
+        <label for="teacherName" class="col-sm-2 col-form-label">
+            First Name
         </label>
         <div class="col-sm-10">
-            <input text id="TeacherName" class="form-control" placeholder="Teacher Full Name" />
+            <InputText id="teacherName" class="form-control" placeholder="Teacher Name"
+                       @bind-Value="EditTeacherModel.TeacherName" />
+            <ValidationMessage For="@(() => EditTeacherModel.TeacherName)" />
         </div>
     </div>
-
     <div class="form-group row">
-        <label for="ImageUrl" class="col-sm-2 col-form-label">
-            ImageUrl
+        <label for="imageUrl" class="col-sm-2 col-form-label">
+            Last Name
         </label>
         <div class="col-sm-10">
-            <input text id="ImageUrl" class="form-control" placeholder="Images/Teacher1.png" />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <label for="Courses" class="col-sm-2 col-form-label">
-            Course
-        </label>
-        <div class="col-sm-10">
-            <inputtext id="Courses" class="form-control" placeholder="Courses" />
+            <InputText id="imageUrl" class="form-control" placeholder="Image Url"
+                       @bind-Value="EditTeacherModel.ImageUrl" />
+            <ValidationMessage For="@(() => EditTeacherModel.ImageUrl)" />
         </div>
     </div>
     @*<div class="form-group row">
-            <label for="imageurl" class="col-sm-2 col-form-label">
-                courses
+            Updating Course Name from this page does not make sense
+            This is only here to demonstrate complex model validation
+            <label for="deptName" class="col-sm-2 col-form-label">
+                Course Name
             </label>
-            <div class="col-sm-10">
-                <inputselect class="form-control" @bind-value="@teacher.courses">
-                    @foreach (var course in teacher.courses)
-                    {
-                        <option value="@course.coursename">@course.coursename</option>
-                    }
-                </inputselect>
+            <div id="deptName" class="col-sm-10">
+                <InputText @bind-Value="EditTeacherModel.Course.CourseName"
+                           class="form-control" />
+                <ValidationMessage For="@(() => EditTeacherModel.Course.CourseName)" />
             </div>
         </div>*@
-    <button type="submit" class="btn btn-success">Add Teacher</button>
-</form>
-
+    <button class="btn btn-primary" type="submit">Submit</button>
+</EditForm>
 
 
 
@@ -60,15 +57,65 @@
     [Inject]
     public ITeacherService TeacherService { get; set; }
 
-    public Teacher Teacher { get; set; } = new Teacher();
+    private Teacher Teacher { get; set; } = new Teacher();
 
-    public IEnumerable<Course> Courses { get; set; }
+    public EditTeacherModel EditTeacherModel { get; set; } = new EditTeacherModel();
 
-    //[Parameter]
-    //public string Id { get; set; }
+    [Inject]
+    public ICourseService CourseService { get; set; }
+
+    public List<Course> Courses { get; set; } = new List<Course>();
+
+    [Parameter]
+    public string Id { get; set; }
+
+    [Inject]
+    public IMapper Mapper { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
-        Teacher = await TeacherService.CreateTeacher(Teacher);
+        int.TryParse(Id, out int TeacherId);
+
+        if (TeacherId != 0)
+        {
+            Teacher = await TeacherService.GetTeacher(int.Parse(Id));
+        }
+        else
+        {
+            Teacher = new Teacher
+            {
+                TeacherId = 0,
+                TeacherName = "Tigger",
+                ImageUrl = "images/default.png"
+            };
+        }
+
+
+        Courses = (await CourseService.GetCourses()).ToList();
+        Mapper.Map(Teacher, EditTeacherModel);
     }
+
+    protected async Task HandleValidSubmit()
+    {
+        Mapper.Map(EditTeacherModel, Teacher);
+
+        Teacher result = null;
+
+        if (Teacher.TeacherId != 0)
+        {
+            result = await TeacherService.UpdateTeacher(Teacher);
+        }
+        else
+        {
+            result = await TeacherService.CreateTeacher(Teacher);
+        }
+        if (result != null)
+        {
+            NavigationManager.NavigateTo("/Teachers");
+        }
+    }
+
 }

@@ -1,5 +1,4 @@
 ﻿@page "/TeacherDetails/{id}"
-
 @*@inherits TeacherDetailsBase*@
 
 @using Studentify.Web.Services
@@ -24,17 +23,33 @@
 
                 <h4>Teacher ID : @Teacher.TeacherId</h4>
                 @foreach (var teacherCurse in @Teacher.Courses)
-                {                    
-                    <h4>Course : @teacherCurse.CourseName</h4>
+                {
+                 
+            <table class="table-sm">
+                <tr>
+                    <td><h4>Course:</h4></td>
+                    <td> @teacherCurse.CourseName</td>
+                </tr>
+                <tr>
+                    <td><h6>Description:</h6></td>
+                    <td> @teacherCurse.Description</td>
+                </tr>
+            </table>        
+
+                   
+
                 }
+
+               
 
             </div>
             <div class="card-footer text-center">
                 <a href="/Teachers" class="btn btn-primary">Back</a>
-                <a href="@($"Teachers/Editteacher/{Teacher.TeacherId}")" class="btn btn-primary">Edit</a>
+                <a href="@($"Teachers/editteacher/{Teacher.TeacherId}")" class="btn btn-primary">Edit</a>
                 <a href="#" class="btn btn-danger">Delete</a>
-                
+
             </div>
+            
         </div>
     </div>
 </div>
@@ -49,13 +64,13 @@
     [Parameter]
     public string Id { get; set; }
 
-    
+
 
     protected async override Task OnInitializedAsync()
     {
         Teacher = await TeacherService.GetTeacher(int.Parse(Id));
     }
 
-    
+
 
 }

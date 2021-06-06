@@ -59,22 +59,45 @@ namespace Studentify.Api.Controllers
         }
 
 
+        //// PUT: api/Teacher/2
+        //[HttpPut("{id:int}")]
+        //public async Task<ActionResult<Teacher>> PutTeacher(int id, Teacher teacher)
+        //{
+        //    try
+        //    {
+        //        if (id != teacher.TeacherId)
+        //        {
+        //            return BadRequest("Teacher ID mismatch");
+        //        }
+
+        //        var teacherToUpdate = await teacherRepository.GetTeacher(id);
+
+        //        if (teacherToUpdate == null)
+        //        {
+        //            return NotFound($"Teacher with Id = {id} not found");
+        //        }
+
+        //        return await teacherRepository.UpdateTeacher(teacher);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, "Error update data");
+        //    }
+        //}
+
+
         // PUT: api/Teacher/2
-        [HttpPut("{id:int}")]
-        public async Task<ActionResult<Teacher>> PutTeacher(int id, Teacher teacher)
+        [HttpPut()]
+        public async Task<ActionResult<Teacher>> PutTeacher(Teacher teacher)
         {
             try
             {
-                if (id != teacher.TeacherId)
-                {
-                    return BadRequest("Teacher ID mismatch");
-                }
-
-                var teacherToUpdate = await teacherRepository.GetTeacher(id);
+                
+                var teacherToUpdate = await teacherRepository.GetTeacher(teacher.TeacherId);
 
                 if (teacherToUpdate == null)
                 {
-                    return NotFound($"Teacher with Id = {id} not found");
+                    return NotFound($"Teacher with Id = {teacher.TeacherId} not found");
                 }
 
                 return await teacherRepository.UpdateTeacher(teacher);

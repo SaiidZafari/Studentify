@@ -42,9 +42,9 @@ namespace Studentify.Web.Services
             return await httpClient.GetJsonAsync<Teacher[]>($"api/Teachers/search/{name}");
         }
 
-        public async Task<Teacher> UpdateTeacher(Teacher UpdateTeacher)
+        public async Task<Teacher> UpdateTeacher(Teacher updateTeacher)
         {
-            return await httpClient.PutJsonAsync<Teacher>("api/Teacher", "UpdateTeacher");
+            return await httpClient.PutJsonAsync<Teacher>("api/Teachers", updateTeacher);
         }
     }
 }
