@@ -53,6 +53,7 @@ header{
     display: flex;
     padding: 10px 30px 0 30px;
     border-bottom: 1px solid #000;
+    justify-content: space-between;
 }
 
 header div{
@@ -90,28 +91,6 @@ header div{
     padding: 0 5px;
     font-size: 12px;
     width: calc(100% / 4);
-}
-
-.search-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.search-inner-container{
-    position: relative;
-}
-
-.search-inner-container i{
-    position: absolute;
-    top: 6px;
-    left:10px;
-}
-
-.search-inner-container input{
-    border-radius: 20px;
-    padding-left: 30px;
 }
 
 .search-input-container input:focus{

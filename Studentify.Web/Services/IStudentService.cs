@@ -1,13 +1,15 @@
-﻿using Studentify.Models;
-using System;
+using Studentify.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Studentify.Web.Services
 {
-    interface IStudentService
+    public interface IStudentService
     {
         Task<IEnumerable<Student>> GetStudents();
+
+        Task<Student> GetStudent(int id);
+
+        Task<IEnumerable<Student>> Search(string name);
     }
 }

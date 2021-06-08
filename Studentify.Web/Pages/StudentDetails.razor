@@ -1,0 +1,58 @@
+﻿@page "/StudentDetails/{id}"
+@*<h3>Student Details</h3>*@
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-4">
+        <div class="card">
+
+            <div class="card-header">
+                <h1>@Student.StudentName</h1>
+            </div>
+
+            <div class="card-body">
+                <img class="card-img-top" src="@(Student.ImageUrl == null? "/images/default.png" : Student.ImageUrl)" alt="@Student.StudentName" />
+
+                <p class="font-weight-bold mb-0 pt-2">Student Id</p>
+                <p class="mb-0">@Student.StudentId</p>
+                <p class="font-weight-bold mb-0 pt-2">Enrolled in courses</p>
+                @foreach (var course in Courses)
+                {
+                    <p class="mb-0">@course.CourseName</p>
+                }
+            </div>
+            <div class="card-footer text-center">
+                <a href="/students" class="btn btn-primary">Back</a>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public Student Student { get; set; } = new Student();
+
+    public IEnumerable<Course> Courses { get; set; } = new List<Course>();
+
+    [Inject]
+    public IStudentService StudentService { get; set; }
+
+    [Inject]
+    public ICourseService CourseService { get; set; }
+
+    [Parameter]
+    public string Id { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        Student = await StudentService.GetStudent(int.Parse(Id));
+
+        Courses = await CourseService.GetStudentCourses(Student.StudentId);
+
+    }
+}

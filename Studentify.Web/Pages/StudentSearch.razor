@@ -1,17 +1,23 @@
-﻿@page "/Students"
+﻿@page "/Students/{name}"
+
+@using Studentify.Models;
+@using Studentify.Web.Services;
+@using Microsoft.AspNetCore.Components;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Threading.Tasks;
 
 
-@inject NavigationManager navigationManager
-
-<h1>Students</h1>
+<h3>Student Search</h3>
 
 <hr />
- @*Action Will bind search to http *@
-<form action="/students/@SearchTerm"  method="get">
+@*Action Will bind search to http *@
+<form action="/students/@SearchTerm" method="get">
     <div class="input-group flex-center">
-        <input class="form-control" @bind-value="@SearchTerm"  />
+        <input class="form-control" @bind-value="@SearchTerm" />
         <div class="input-group-append">
-            <button type="submit" class="btn btn-primary"> Search </button>
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a href="@($"/Students")" class="btn btn-success">Back to StudentList</a>
         </div>
     </div>
 </form>
@@ -23,7 +29,7 @@
     <div class="row pl-3">
         @if (Students == null)
         {
-            <div class="spinner"></div>
+            <h3>Loading</h3>
         }
         else
         {
@@ -52,7 +58,7 @@
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
                         </div>
                         <div class="col-2 d-flex flex-row">
-                            <a href="@($"/StudentDetails/{student.StudentId}")" class="btn btn-secondary align-self-end">Details</a>
+                            <button class="btn btn-secondary align-self-end">Details</button>
                         </div>
                     </div>
                     <hr />
@@ -64,25 +70,24 @@
 
 @code
 {
+
     [Inject]
     public IStudentService StudentService { get; set; }
 
 
-    public IEnumerable<Student> Students { get; set; } = null;
+    public IEnumerable<Student> Students { get; set; }
 
     [Parameter]
-    public string SearchTerm { get; set; } 
+    public string SearchTerm { get; set; }
+
+
+    [Parameter]
+    public string name { get; set; }
+
 
     protected override async Task OnInitializedAsync()
     {
-        Students = (await StudentService.GetStudents()).ToList();
+        Students = (await StudentService.Search(name)).ToList();
     }
 
-
-    //private IEnumerable<Student> students = null;
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    await base.OnInitializedAsync();
-    //    students = await StudentService.GetStudents();
-    //}
 }

@@ -16,8 +16,8 @@ GO
 
 INSERT INTO [dbo].[Courses] ([SubjectId], [TeacherId], [CourseName], [Description], [ImageUrl])
 VALUES
-(1, 1, 'Basic Math', '1+1=2 and so on.', 'https://via.placeholder.com/320x320.png?text=Math+101'),
-(1, 2, 'Advanced Math', '1*1=1 and other stuff', 'https://via.placeholder.com/320x320.png?text=Complex+Math'),
+(2, 1, 'Basic Math', '1+1=2 and so on.', 'https://via.placeholder.com/320x320.png?text=Math+101'),
+(2, 2, 'Advanced Math', '1*1=1 and other stuff', 'https://via.placeholder.com/320x320.png?text=Complex+Math'),
 (2, 3, 'WebAPI', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'https://via.placeholder.com/320x320.png?text=WebAPI'),
 (2, 3, 'Asp.NET Core', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'https://via.placeholder.com/320x320.png?text=Asp.NET+Core'),
 (2, 3, 'Javascript', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'https://via.placeholder.com/320x320.png?text=Javascript')

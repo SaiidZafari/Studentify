@@ -1,8 +1,11 @@
-﻿@page "/Teachers/{name}"
+@page "/Teachers/{name}"
 
-@using Studentify.Web.Services
-@using Studentify.Models
-@using System.Threading.Tasks
+@using Studentify.Models;
+@using Studentify.Web.Services;
+@using Microsoft.AspNetCore.Components;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Threading.Tasks;
 
 
 <h3>Teacher Search</h3>
@@ -86,6 +89,4 @@
     {
         Teachers = (await TeacherService.Search(name)).ToList();
     }
-
-
 }

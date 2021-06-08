@@ -1,0 +1,191 @@
+﻿@page "/courses/details/{id}"
+
+@using Studentify.Models;
+@using Studentify.Web.Services;
+
+<div class="container">
+
+    @if (course == null & teacher == null)
+    {
+        <h3>Loading</h3>
+    }
+    else
+    {
+
+        <!-- Section: About 1 -->
+        <section id="about" class="mt-5 mb-5 py-3 wow fadeIn" data-wow-delay="0.2s">
+
+            <!-- Grid row -->
+            <div class="row pt-2 mt-5">
+
+                <!-- Grid column -->
+                <div class="col-lg-5 col-md-12 mb-3 wow fadeIn" data-wow-delay="0.4s">
+                    <!-- Image -->
+                    <img src="@course.ImageUrl" class="img-fluid z-depth-1 rounded"
+                         alt="My photo">
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-lg-6 ml-auto col-md-12 wow fadeIn" data-wow-delay="0.4s">
+
+                    <!-- Secion heading -->
+                    <h3 class="mb-5 dark-grey-text title font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                        <strong>@course.CourseName</strong>
+                    </h3>
+
+                    <!-- Description -->
+                    <p align="justify" class="grey-text">
+                        @course.Description
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo animi
+                        soluta ratione quisquam, dicta
+                        ab cupiditate iure eaque? Repellendus voluptatum, magni impedit delectus, beatae maxime temporibus
+                        maiores quibusdam.
+                    </p>
+                    <p align="justify" class="grey-text">
+                        Rem magnam ad perferendis iusto sint tempora ea voluptatibus iure,
+                        animi excepturi modi aut possimus
+                        in hic molestias repellendus illo ullam odit quia velit. Lorem ipsum dolor sit amet, consectetur
+                        adipisicing elit.
+                    </p>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </section>
+        <!-- Section: About 1 -->
+
+        <hr>
+
+        <!-- Section: About 2 -->
+        <section id="about" class="mt-5 mb-5 pb-3 wow fadeIn" data-wow-delay="0.2s">
+
+            <!-- Grid row -->
+            <div class="row pt-4 mt-5">
+
+                <!-- Grid column -->
+                <div class="col-lg-6 col-md-12 wow fadeIn" data-wow-delay="0.4s">
+
+                    <!-- Secion heading -->
+                    <h3 class="mb-5 dark-grey-text title font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                        <strong>Our mission</strong>
+                    </h3>
+
+                    <!-- Description -->
+                    <p align="justify" class="grey-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo animi
+                        soluta ratione quisquam, dicta
+                        ab cupiditate iure eaque? Repellendus voluptatum, magni impedit delectus, beatae maxime temporibus
+                        maiores quibusdam.
+                    </p>
+                    <p align="justify" class="grey-text">
+                        Rem magnam ad perferendis iusto sint tempora ea voluptatibus iure,
+                        animi excepturi modi aut possimus
+                        in hic molestias repellendus illo ullam odit quia velit. Lorem ipsum dolor sit amet, consectetur
+                        adipisicing elit.
+                    </p>
+
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-lg-6 col-md-12 mb-3 wow fadeIn" data-wow-delay="0.4s">
+
+                    <div class="text-left">
+                        <h6 class="title font-weight-bold dark-grey-text  spacing mt-4 mx-4">
+                            <i class="fas fa-square orange-text mr-2" aria-hidden="true"></i>
+                            <strong>Lorem ipsum dolor sit amet</strong>
+                        </h6>
+                        <p class="grey-text font-small mx-4">
+                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred.
+                        </p>
+                    </div>
+
+                    <div class="text-left">
+                        <h6 class="title font-weight-bold dark-grey-text spacing mt-4 mx-4">
+                            <i class="fas fa-square orange-text mr-2" aria-hidden="true"></i>
+                            <strong>Lorem ipsum dolor sit amet</strong>
+                        </h6>
+                        <p class="grey-text font-small mx-4">
+                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                        </p>
+                    </div>
+
+                    <div class="text-left">
+                        <h6 class="title font-weight-bold dark-grey-text spacing mt-4 mx-4">
+                            <i class="fas fa-square orange-text mr-2" aria-hidden="true"></i>
+                            <strong>Lorem ipsum dolor sit amet</strong>
+                        </h6>
+                        <p class="grey-text font-small mx-4">
+                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+                        </p>
+                    </div>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </section>
+        <!-- Section: About 2 -->
+
+        <hr>
+
+        <!-- Section: Team -->
+        <section class="team-section pb-5 mb-4">
+
+            <!-- Secion heading -->
+            <h3 class="my-5 pt-4 text-center title font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                <strong>Meet your teacher</strong>
+            </h3>
+            <!-- Section description -->
+            <p class="grey-text w-responsive text-center mx-auto mb-5">
+                Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Fugit, error amet numquam iure provident voluptate
+                esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.
+            </p>
+
+            <!-- Grid row -->
+            <div class="row mb-lg-4 text-center text-md-left">
+
+                <!-- Grid column -->
+                <div class="col-lg-12 col-md-12 mb-5 d-flex justify-content-center">
+
+                    <div class="avatar white mb-md-0 mb-4">
+                        <img src="@teacher.ImageUrl" class="rounded z-depth-1"
+                             alt="First sample avatar image">
+                    </div>
+
+
+                </div>
+                <!-- Grid column -->
+            </div>
+
+        </section>
+        <!-- Section: Team -->
+
+        }
+    </div>
+
+@code {
+    [Inject]
+    public ICourseService CourseService { get; set; }
+    [Inject]
+    public ITeacherService TeacherService { get; set; }
+
+
+    public Course course { get; set; }
+    public Teacher teacher { get; set; }
+
+    [Parameter]
+    public string id { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        course = await CourseService.GetCourse(Int32.Parse(id));
+        teacher = await TeacherService.GetTeacher(course.TeacherId);
+    }
+}
