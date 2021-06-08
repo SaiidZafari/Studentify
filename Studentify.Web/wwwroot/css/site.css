@@ -49,76 +49,31 @@ a, .btn-link {
     top: 0.5rem;
 }
 
-header{
-    display: flex;
-    padding: 10px 30px 0 30px;
-    border-bottom: 1px solid #000;
-    justify-content: space-between;
-}
 
-header div{
-    width: calc(100% / 3);
-}
-
-.logo-title-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 0;
-}
-
-.logo-title-container i{
-    font-size: 40px;
-    padding-right: 10px;
-}
-
-.logo-title-container h1{
-    margin: 0;
-}
-
-.presentation-container ul{
-    padding-left: 0;
-    border: 1px solid #000;
-    border-bottom: 0;
-    display: flex;
-    padding: 10px 0;
-    margin: 0;
-    width:auto;
-}
-
-.presentation-container ul li {
-    list-style-type: none;
-    padding: 0 5px;
-    font-size: 12px;
-    width: calc(100% / 4);
-}
-
-.search-input-container input:focus{
-    outline: none;
-}
 
 .utilities-container{
     display: flex;
     justify-content: flex-end;
 }
 
-.utilities-inner-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 250px;
+.profile-container > a {
+    color: white;
 }
 
-.utilities-inner-container div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.cart-container > a {
+    color: white;
+}
+
+.phone-container > a {
+    color: white;
+}
+
+
+.utilities-container div{
+    color: white;
     padding: 0 10px;
 }
 
-.utilities-inner-container div i{
-    font-size: 25px;
-}
 
 .spinner {
     border: 16px solid silver;
@@ -145,6 +100,10 @@ header div{
     height: 120px;
 }
 
+.navbar {
+    background-color: #1C2A48;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg)
@@ -153,4 +112,10 @@ header div{
     100% {
         transform: rotate(360deg)
     }
+}
+
+.view {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 50px;
 }
