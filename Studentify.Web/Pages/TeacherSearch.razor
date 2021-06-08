@@ -8,7 +8,7 @@
 @using System.Threading.Tasks;
 
 
-<h3>TeacherSearch</h3>
+<h3>Teacher Search</h3>
 
 <hr />
 @*Action Will bind search to http *@
@@ -89,6 +89,4 @@
     {
         Teachers = (await TeacherService.Search(name)).ToList();
     }
-
-
 }

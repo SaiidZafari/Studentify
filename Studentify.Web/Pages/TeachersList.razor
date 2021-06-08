@@ -8,6 +8,7 @@
 @using System.Threading.Tasks;
 
 <h3>Teachers</h3>
+
 <hr />
 @*Action Will bind search to http *@
 <form action="/teachers/@SearchTerm" method="get">
@@ -29,19 +30,23 @@
         }
         else
         {
-            <div class="col-3 border mt-1">
-                <h4>Sort by</h4>
-                <form>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sort" value="name" checked />
-                        <label class="form-check-label" for="Name">Teacher Name</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sort" value="id" />
-                        <label class="form-check-label" for="id">Teacher Id</label>
-                    </div>
-                </form>
+            
+    <div class="col-3 border mt-1">
+
+        <a href="@($"Teachers/AddTeacher")" class="btn btn-secondary">Add Teacher</a>
+        <hr />
+        <h4>Sort by</h4>
+        <form>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sort" value="name" checked />
+                <label class="form-check-label" for="Name">Teacher Name</label>
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sort" value="id" />
+                <label class="form-check-label" for="id">Teacher Id</label>
+            </div>
+        </form>
+    </div>
 
             <div class="col-9 pt-1">
                 @foreach (var teacher in Teachers)

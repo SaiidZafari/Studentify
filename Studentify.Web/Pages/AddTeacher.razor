@@ -1,0 +1,121 @@
+﻿@page "/Teachers/AddTeacher/{id}"
+
+@page "/Teachers/AddTeacher"
+
+@using Studentify.Web.Services
+@using Studentify.Models
+@using System.Threading.Tasks
+@using Studentify.Web.Models
+@using AutoMapper;
+
+
+<EditForm Model="@EditTeacherModel" OnValidSubmit="HandleValidSubmit">
+    @*<ObjectGraphDataAnnotationsValidator />*@
+    <h3>Add Teacher</h3>
+    <hr />
+    <ValidationSummary />
+    <div class="form-group row">
+        <label for="teacherName" class="col-sm-2 col-form-label">
+            Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="teacherName" class="form-control" placeholder="Teacher Name"
+                       @bind-Value="EditTeacherModel.TeacherName" />
+            <ValidationMessage For="@(() => EditTeacherModel.TeacherName)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="imageUrl" class="col-sm-2 col-form-label">
+            ImageUrl
+        </label>
+        <div class="col-sm-10">
+            <InputText id="imageUrl" class="form-control" placeholder="Image Url"
+                       @bind-Value="EditTeacherModel.ImageUrl" />
+            <ValidationMessage For="@(() => EditTeacherModel.ImageUrl)" />
+        </div>
+    </div>
+    @*<div class="form-group row">
+            Updating Course Name from this page does not make sense
+            This is only here to demonstrate complex model validation
+            <label for="deptName" class="col-sm-2 col-form-label">
+                Course Name
+            </label>
+            <div id="deptName" class="col-sm-10">
+                <InputText @bind-Value="EditTeacherModel.Course.CourseName"
+                           class="form-control" />
+                <ValidationMessage For="@(() => EditTeacherModel.Course.CourseName)" />
+            </div>
+        </div>*@
+    <button class="btn btn-primary" type="submit">Submit</button>
+</EditForm>
+
+
+
+
+@code {
+
+    [Inject]
+    public ITeacherService TeacherService { get; set; }
+
+    private Teacher Teacher { get; set; } = new Teacher();
+
+    public EditTeacherModel EditTeacherModel { get; set; } = new EditTeacherModel();
+
+    [Inject]
+    public ICourseService CourseService { get; set; }
+
+    public List<Course> Courses { get; set; } = new List<Course>();
+
+    [Parameter]
+    public string Id { get; set; }
+
+    [Inject]
+    public IMapper Mapper { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        int.TryParse(Id, out int TeacherId);
+
+        if (TeacherId != 0)
+        {
+            Teacher = await TeacherService.GetTeacher(int.Parse(Id));
+        }
+        else
+        {
+            Teacher = new Teacher
+            {
+                TeacherId = 0,
+                TeacherName = "Tigger",
+                ImageUrl = "images/default.png"
+            };
+        }
+
+
+        Courses = (await CourseService.GetCourses()).ToList();
+        Mapper.Map(Teacher, EditTeacherModel);
+    }
+
+    protected async Task HandleValidSubmit()
+    {
+        Mapper.Map(EditTeacherModel, Teacher);
+
+        Teacher result = null;
+
+        if (Teacher.TeacherId != 0)
+        {
+            result = await TeacherService.UpdateTeacher(Teacher);
+        }
+        else
+        {
+            result = await TeacherService.CreateTeacher(Teacher);
+        }
+        if (result != null)
+        {
+            NavigationManager.NavigateTo("/Teachers");
+        }
+    }
+
+}

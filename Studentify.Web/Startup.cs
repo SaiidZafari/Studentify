@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutoMapper;
 using Studentify.Web.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Studentify.Web.Models;
 
 namespace Studentify.Web
 {
@@ -28,6 +30,7 @@ namespace Studentify.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddAutoMapper(typeof (TeacherProfile));
 
 
             services.AddHttpClient<ICourseService, CourseService>(client =>

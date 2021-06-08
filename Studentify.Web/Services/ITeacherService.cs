@@ -1,4 +1,4 @@
-﻿using Studentify.Models;
+using Studentify.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +14,10 @@ namespace Studentify.Web.Services
 
         Task<IEnumerable<Teacher>> Search(string name);
 
+        Task<Teacher> UpdateTeacher(Teacher UpdateTeacher);
+
         Task DeleteTeacher(int id);
+
+        Task<Teacher> CreateTeacher(Teacher newTeacher);
     }
 }
