@@ -1,39 +1,46 @@
-﻿<div class="card-deck container">
-    @foreach (var course in Courses.Take(3))
-    {
-        <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+﻿<div class="container">
 
-            <img class="card-img-top imageThumbnail" src="https://mdbootstrap.com/img/Photos/Others/images/51.jpg" />
+    <h3 class="text-center @HeaderStyle mt-5">Popular courses</h3>
 
-            <div class="card-body">
+    <div class="card-deck">
+        @foreach (var course in Courses.Take(3))
+        {
+            <div class="card m-3">
 
-                <!--Title-->
-                <h4 class="card-title darkgrey-text">
-                    <strong class="fixed-height-title">@course.CourseName</strong>
-                </h4>
-                <hr>
-                <!--Text-->
-                <p class="font-small fixed-height-description">
-                    @course.Description
-                </p>
-                <a href="#" class="black-text d-flex flex-row-reverse">
-                    <p class="waves-effect p-2 font-small blue-text mb-0">
-                        Read more
-                        <i class="fas fa-long-arrow-alt-right ml-2" aria-hidden="true"></i>
+                <img class="card-img-top imageThumbnail" src="https://mdbootstrap.com/img/Photos/Others/images/51.jpg" />
+
+                <div class="card-body">
+
+                    <!--Title-->
+                    <h4 class="card-title darkgrey-text">
+                        <strong class="fixed-height-title">@course.CourseName</strong>
+                    </h4>
+                    <hr>
+                    <!--Text-->
+                    <p class="font-small fixed-height-description">
+                        @course.Description
                     </p>
-                </a>
-            </div>
+                    <a href="#" class="black-text d-flex flex-row-reverse">
+                        <p class="waves-effect p-2 font-small blue-text mb-0">
+                            Read more
+                            <i class="fas fa-long-arrow-alt-right ml-2" aria-hidden="true"></i>
+                        </p>
+                    </a>
+                </div>
 
-            <div class="card-footer text-center">
-                <a href="/courses/details/@course.CourseId" class="btn btn-info m-1">Details</a>
+                <div class="card-footer text-center">
+                    <a href="/courses/details/@course.CourseId" class="btn btn-info m-1">Details</a>
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
-
 
 
 @code {
     [Parameter]
     public IEnumerable<Course> Courses { get; set; }
+
+    [Parameter]
+    public string HeaderStyle { get; set; } = "";
 }
