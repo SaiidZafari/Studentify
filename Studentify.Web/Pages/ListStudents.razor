@@ -29,19 +29,21 @@
         }
         else
         {
-            <div class="col-3 border mt-1">
-                <h4>Sort by</h4>
-                <form>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sort" value="name" checked />
-                        <label class="form-check-label" for="Name">Student Name</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sort" value="id" />
-                        <label class="form-check-label" for="id">Student Id</label>
-                    </div>
-                </form>
+    <div class="col-3 border mt-1">
+        <a href="@($"Students/Add")" class="btn btn-secondary">Add Student</a>
+        <hr />
+        <h4>Sort by</h4>
+        <form>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sort" value="name" checked />
+                <label class="form-check-label" for="Name">Student Name</label>
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sort" value="id" />
+                <label class="form-check-label" for="id">Student Id</label>
+            </div>
+        </form>
+    </div>
             <div class="col-9 pt-1">
                 @foreach (var student in Students)
                 {
