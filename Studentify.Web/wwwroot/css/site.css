@@ -49,9 +49,13 @@ a, .btn-link {
     top: 0.5rem;
 }
 
+.rNav{
+    float:right;
+}
 
 
-.utilities-container{
+
+.utilities-container {
     display: flex;
     justify-content: flex-end;
 }
@@ -118,4 +122,19 @@ a, .btn-link {
     display: flex;
     justify-content: space-around;
     padding-bottom: 50px;
+}
+
+.spSZ{
+    border: red 3px solid;
+    
+}
+.lapDiv{
+    margin-top:7%;
+}
+.lap2Div {
+    margin-top: 4%;
+}
+
+.la3pDiv {
+    margin-top: 10%;
 }
