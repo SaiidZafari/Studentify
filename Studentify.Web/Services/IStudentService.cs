@@ -12,6 +12,6 @@ namespace Studentify.Web.Services
 
         Task<IEnumerable<Student>> Search(string name);
 
-        Task AddStudent(Student student);
+        Task<Student> AddStudent(Student student);
     }
 }

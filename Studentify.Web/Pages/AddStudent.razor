@@ -1,0 +1,11 @@
+﻿@page "/Students/Add" 
+
+<h3>Add Student</h3>
+
+@code {
+
+    [Inject]
+    public IStudentService StudentService { get; set; }
+
+    private Student Student { get; set; } = new Student();
+}
