@@ -1,67 +1,50 @@
-﻿<header class="vw-100">  
+﻿<header>
 
-    <!--Navbar-->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-
-        @*<div class="wow fadeInDown" data-wow-delay="0.2s">
-            <a href="/">
-                <div class="text-white d-flex">
-                    <i class="fas fa-user-graduate"></i>
-                    <h1 class="text-white mb-0 align-self-end pl-1">Studentify</h1>
-                </div>
+    @*Navbar*@
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-self-center" href="/">
+                <i class="fas fa-user-graduate"></i>
+                <p class="pl-1 mb-0 align-self-center">Studentify</p>
             </a>
-        </div>*@
-
-        <a class="navbar-brand d-flex align-self-center" href="#">
-            <i class="fas fa-user-graduate"></i>
-            <p class="pl-1 mb-0 align-self-center">Studentify</p>
-        </a>
-
-        <div class="w-100 ">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!--Links-->
-                <ul class="navbar-nav mr-auto smooth-scroll">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/courses" data-offset="100">Courses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/teachers" data-offset="100">Teachers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/students" data-offset="100">Students</a>
-                    </li>
-                    @*<li class="nav-item">
-                        <a class="nav-link" href="/subjects" data-offset="100">Subjects</a>
-                    </li>*@
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="modal" data-target="/sign-up">Sign Up</a>
-                    </li>
-                </ul>
+            <div class="collapse navbar-collapse" id="navbarText">
 
-                <!--Social Icons-->
-                <div class="utilities-container d-flex rNav">
-                    <div class="phone-container">
-                        <i class="fas fa-phone-volume"></i>
-                        <a href="/ContactPage">Contact</a>
-                    </div>
-                    <div class="profile-container">
-                        <i class="fas fa-user-circle"></i>
-                        <a href="www.google.se">Profile</a>
-                    </div>
-                    <div class="cart-container">
-                        <i class="fab fa-opencart"></i>
-                        <a href="www.google.se">Cart</a>
-                    </div>
+                    <ul class="list-unstyled mb-0 d-flex align-self-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/courses">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/teachers">Teachers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/students">Students</a>
+                        </li>
+                        @*<li class="nav-item">
+                                <a class="nav-link" href="/subjects">Subjects</a>
+                            </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sign Up</a>
+                        </li>
+                    </ul>
+
+
+                    <ul class="list-unstyled mb-0 d-flex">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ContactPage"><i class="fas fa-phone-volume pr-2"></i>Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-user-circle pr-2"></i>Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fab fa-opencart pr-2"></i>Cart</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
     </nav>
-
-
 </header>
 
 @code {

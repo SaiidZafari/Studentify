@@ -49,33 +49,12 @@ a, .btn-link {
     top: 0.5rem;
 }
 
-.rNav{
-    float:right;
-}
-
-
-
-.utilities-container {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.profile-container > a {
+li > a {
     color: white;
 }
 
-.cart-container > a {
-    color: white;
-}
-
-.phone-container > a {
-    color: white;
-}
-
-
-.utilities-container div{
-    color: white;
-    padding: 0 10px;
+li > a:hover {
+    color: rgba(255,255,255,.75);
 }
 
 
