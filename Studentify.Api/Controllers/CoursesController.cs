@@ -43,14 +43,14 @@ namespace Studentify.Api.Controllers
         {
             try
             {
-                var theCourse = await courseRepository.GetCourse(id);
+                var Course = await courseRepository.GetCourse(id);
 
-                if (theCourse == null)
+                if (Course == null)
                 {
                     return NotFound();
                 }
 
-                return theCourse;
+                return Course;
             }
             catch (Exception)
             {
