@@ -1,10 +1,24 @@
-﻿<header>
+﻿<header class="vw-100">  
+
     <!--Navbar-->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <strong>Studentify</strong>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar ">
+
+        <div class="wow fadeInDown" data-wow-delay="0.2s">
+            <a href="/">
+                <div class="text-white ">
+                    <i class="fas fa-user-graduate "><p class="text-white">Studentify</p></i>
+                </div>
+                
             </a>
+        </div>
+
+
+        <div class="w-100 mt-5 ml-3">
+
+
+            @*<a class="navbar-brand" href="#">
+                <strong>Studentify</strong>
+            </a>*@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -13,14 +27,23 @@
                 <!--Links-->
                 <ul class="navbar-nav mr-auto smooth-scroll">
                     @*<li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>*@
+                        <a class="nav-link" href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>*@
                     @*<li class="nav-item">
                         <a class="nav-link" href="#about" data-offset="100">About</a>
                     </li>*@
+                    @*<li class="nav-item">
+                        <a href="/">
+                            <div class=" ">
+                                <i class="fas fa-user-graduate "></i>
+                            </div>
+                            <strong>Studentify</strong>
+                        </a>
+                    </li>*@
+
                     <li class="nav-item">
                         <a class="nav-link" href="/courses" data-offset="100">Courses</a>
                     </li>
@@ -30,19 +53,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/students" data-offset="100">Students</a>
                     </li>
-                    <li class="nav-item">
+                    @*<li class="nav-item">
                         <a class="nav-link" href="/subjects" data-offset="100">Subjects</a>
-                    </li>
+                    </li>*@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="modal" data-target="/sign-up">Sign Up</a>
                     </li>
                 </ul>
 
                 <!--Social Icons-->
-                <div class="utilities-container d-flex">
+                <div class="utilities-container d-flex rNav">
                     <div class="phone-container">
                         <i class="fas fa-phone-volume"></i>
-                        <a href="www.google.se">Contact</a>
+                        <a href="/ContactPage">Contact</a>
                     </div>
                     <div class="profile-container">
                         <i class="fas fa-user-circle"></i>
@@ -58,31 +81,31 @@
     </nav>
     <!--Navbar-->
     <!-- Intro Section -->
-    <div id="home" class="view jarallax" data-jarallax='{"speed": 0.2}'
-         style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/67.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-        <div class="mask rgba-black-strong">
-            <div class="container h-100 d-flex justify-content-center align-items-center">
-                <div class="row smooth-scroll">
-                    <div class="col-md-12 white-text text-center">
-                        <div class="wow fadeInDown" data-wow-delay="0.2s">
-                            <div class="logo-container">
-                                <i class="fas fa-user-graduate"></i>
+    @*<div id="home" class="view jarallax" data-jarallax='{"speed": 0.2}'
+             style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/67.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+            <div class="mask rgba-black-strong">
+                <div class="container h-100 d-flex justify-content-center align-items-center">
+                    <div class="row smooth-scroll">
+                        <div class="col-md-12 white-text ">
+                            <div class="wow fadeInDown" data-wow-delay="0.2s">
+                                <div class="logo-container">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <h2 class="display-3 font-weight-bold mb-2">Studentify</h2>
+                                <hr class="hr-light">
+                                <h3 class="subtext-header mt-4 mb-5">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit deleniti
+                                    consequuntur.
+                                </h3>
                             </div>
-                            <h2 class="display-3 font-weight-bold mb-2">Studentify</h2>
-                            <hr class="hr-light">
-                            <h3 class="subtext-header mt-4 mb-5">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit deleniti
-                                consequuntur.
-                            </h3>
+                            <a href="/teachers" data-offset="100" class="btn btn-info wow fadeInLeft" data-wow-delay="0.2s">Teachers</a>
+                            <a href="/courses" data-offset="100" class="btn btn-warning wow fadeInRight"
+                               data-wow-delay="0.2s">Courses</a>
                         </div>
-                        <a href="/teachers" data-offset="100" class="btn btn-info wow fadeInLeft" data-wow-delay="0.2s">Teachers</a>
-                        <a href="/courses" data-offset="100" class="btn btn-warning wow fadeInRight"
-                           data-wow-delay="0.2s">Courses</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>*@
 
 
 
