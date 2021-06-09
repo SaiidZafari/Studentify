@@ -2,67 +2,43 @@
 
 @inject ICourseService courseService;
 
-    <section class="container pb-5 lapDiv" id="top">
+<section class="container pb-5 lapDiv" id="top">
 
-        <h1 class="display-3">Courses</h1>
-        <p>
-            Nemo animi soluta ratione quisquam, dicta ab cupiditate iure eaque? Repellendus voluptatum, magni impedit eaque delectus, beatae maxime temporibus maiores quibusdam quasi rem magnam ad perferendis iusto.
-        </p>
+    <h1 class="display-3">Courses</h1>
+    <p>
+        Nemo animi soluta ratione quisquam, dicta ab cupiditate iure eaque? Repellendus voluptatum, magni impedit eaque delectus, beatae maxime temporibus maiores quibusdam quasi rem magnam ad perferendis iusto.
+    </p>
 
-        @*Action Will bind search to http *@
-        <form action="/courses/@SearchTerm" method="get">
-            <div class="input-group flex-center w-50">
-                <input class="form-control" placeholder="Find course" @bind-value="@SearchTerm" />
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-info ml-3">Search</button>
-                </div>
-            </div>
-        </form>
-
-        <div class="my-5">
-            <div class="row">
-                @if (Courses == null)
-                {
-                    <div class="spinner"></div>
-                }
-                else
-                {
-                    <div class="card-deck container">
-                        @foreach (var course in Courses)
-                        {
-                            <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
-
-                                <img class="card-img-top imageThumbnail" src="https://mdbootstrap.com/img/Photos/Others/images/51.jpg" />
-
-                                <div class="card-body">
-
-                                    <!--Title-->
-                                    <h4 class="card-title darkgrey-text">
-                                        <strong class="fixed-height-title">@course.CourseName</strong>
-                                    </h4>
-                                    <hr>
-                                    <!--Text-->
-                                    <p class="font-small fixed-height-description">
-                                        @course.Description
-                                    </p>
-                                    <a href="#" class="black-text d-flex flex-row-reverse">
-                                        <p class="waves-effect p-2 font-small blue-text mb-0">
-                                            Read more
-                                            <i class="fas fa-long-arrow-alt-right ml-2" aria-hidden="true"></i>
-                                        </p>
-                                    </a>
-                                </div>
-
-                                <div class="card-footer text-center">
-                                    <a href="/courses/details/@course.CourseId" class="btn btn-info m-1">Details</a>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                }
+    @*Action Will bind search to http *@
+    <form action="/courses/@SearchTerm" method="get">
+        <div class="input-group flex-center w-50">
+            <input class="form-control" placeholder="Find course" @bind-value="@SearchTerm" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-info ml-3">Search</button>
             </div>
         </div>
-    </section>
+    </form>
+
+    <h3 class="text-center mt-5">Popular courses</h3>
+
+    <div>
+        <div class="row">
+            @if (Courses == null)
+            {
+                <div class="spinner"></div>
+            }
+            else
+            {
+
+            <PopularCourses Courses="@Courses"/>
+
+                <p>usual one here</p>
+
+
+            }
+        </div>
+    </div>
+</section>
 
     <div class="d-flex justify-content-center pb-3">
         <a class="text-center" href="/courses/#top">Back to top <span class="oi oi-arrow-top"></span></a>
