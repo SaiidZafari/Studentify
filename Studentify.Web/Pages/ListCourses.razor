@@ -3,13 +3,16 @@
 
 <section class="container pb-5 lapDiv" id="top">
 
+<div class="d-flex align-items-center py-5 mb-5">
+    <a href="@($"courses/add-course")" class="btn btn-secondary add-course-button">Add Course</a>
+</div>
+
     <h1 class="display-3">Courses</h1>
     <p>
         Get inspiration from our popular courses or just browse through our range of courses. We offer courses spanning from basic math courses to the more advanced ASP.NET Core course.
         Can't find what you are interested in? 
     <a href="mailto:contact@studentify.com">Please let us know</a>
     </p>
-
 
     @*Action Will bind search to http *@
     <form action="/courses/@SearchTerm" method="get">

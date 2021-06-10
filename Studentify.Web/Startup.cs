@@ -30,7 +30,8 @@ namespace Studentify.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddAutoMapper(typeof (TeacherProfile));
+            services.AddAutoMapper(typeof(TeacherProfile));
+            services.AddAutoMapper(typeof(CourseProfile));
 
 
             services.AddHttpClient<ICourseService, CourseService>(client =>

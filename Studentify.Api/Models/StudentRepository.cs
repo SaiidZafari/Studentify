@@ -48,9 +48,7 @@ namespace Studentify.Api.Models
 
         public async Task<IEnumerable<Student>> GetStudents()
         {
-            //return await dbContext.Students.ToListAsync();
-            return await dbContext.Students                
-                 .ToListAsync();
+            return await dbContext.Students.ToListAsync();
         }
 
         public async Task<IEnumerable<Student>> Search(string studentName)
@@ -75,7 +73,7 @@ namespace Studentify.Api.Models
             {
                 theStudent.StudentName = student.StudentName;
                 theStudent.ImageUrl = student.ImageUrl;
-                theStudent.Courses = student.Courses;               
+                //theStudent.Courses = student.Courses;               
 
                 await dbContext.SaveChangesAsync();
 

@@ -28,12 +28,27 @@ namespace Studentify.Web.Services
 
         public async Task<IEnumerable<Course>> Search(string name)
         {
-            return await httpClient.GetJsonAsync<Course[]>($"api/Courses/search/{name}");
+            return await httpClient.GetJsonAsync<Course[]>($"api/courses/search/{name}");
         }
 
         public async Task<IEnumerable<Course>> GetStudentCourses(int studentId)
         {
             return await httpClient.GetJsonAsync<Course[]>($"api/courses/studentCourse/{studentId}");
+        }
+
+        public async Task<Course> CreateCourse(Course course)
+        {
+            return await httpClient.PostJsonAsync<Course>("api/courses", course);
+        }
+
+        public async Task DeleteCourse(int id)
+        {
+            await httpClient.DeleteAsync($"api/courses/{id}");
+        }
+
+        public async Task<Course> UpdateCourse(Course course)
+        {
+            return await httpClient.PutJsonAsync<Course>("api/courses", course);
         }
     }
 }
