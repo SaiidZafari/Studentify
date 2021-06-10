@@ -5,7 +5,7 @@
 
 <div class="container">
 
-    @if (course == null & teacher == null)
+    @if (course == null )
     {
         <h3>Loading</h3>
     }
@@ -154,7 +154,7 @@
                 <div class="col-lg-12 col-md-12 mb-5 d-flex justify-content-center">
 
                     <div class="avatar white mb-md-0 mb-4">
-                        <img src="@teacher.ImageUrl" class="rounded z-depth-1"
+                        <img src="" class="rounded z-depth-1"
                              alt="First sample avatar image">
                     </div>
 
@@ -172,20 +172,18 @@
 @code {
     [Inject]
     public ICourseService CourseService { get; set; }
-    [Inject]
-    public ITeacherService TeacherService { get; set; }
-
 
     public Course course { get; set; }
-    public Teacher teacher { get; set; }
 
     [Parameter]
     public string id { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
 
 
     protected override async Task OnInitializedAsync()
     {
         course = await CourseService.GetCourse(Int32.Parse(id));
-        teacher = await TeacherService.GetTeacher(course.TeacherId);
     }
 }

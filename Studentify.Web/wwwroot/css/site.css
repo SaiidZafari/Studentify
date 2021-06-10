@@ -138,3 +138,13 @@ a, .btn-link {
 .la3pDiv {
     margin-top: 10%;
 }
+
+.add-course-button{
+    width: 200px;
+}
+
+.list-courses-title{
+    width: calc(100% - 200px);
+    font-weight: 700;
+    font-size: 30px;
+}

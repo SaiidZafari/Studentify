@@ -75,7 +75,7 @@ namespace Studentify.Api.Models
             {
                 theStudent.StudentName = student.StudentName;
                 theStudent.ImageUrl = student.ImageUrl;
-                theStudent.Courses = student.Courses;               
+                //theStudent.Courses = student.Courses;               
 
                 await dbContext.SaveChangesAsync();
 

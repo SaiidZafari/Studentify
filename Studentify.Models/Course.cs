@@ -14,7 +14,7 @@ namespace Studentify.Models
 
         public string Description { get; set; }
 
-        public Uri ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         public int SubjectId { get; set; }
 
