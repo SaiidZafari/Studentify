@@ -1,0 +1,44 @@
+﻿@page "/Students/Add"
+
+@using AutoMapper;
+
+<h3>Add Student</h3>
+<hr />
+<EditForm Model="@student" OnValidSubmit="@HandleValidSubmit">
+    <ValidationSummary />
+    <div class="form-group">
+        <label for="studentName" class="col-form-label">Name</label>
+        <InputText id="studentName" class="form-control" @bind-Value="student.StudentName" />
+    </div>
+    <div class="form-group">
+        <label for="studentImage" class="col-form-label">Image URL</label>
+        <InputText id="studentImage" class="form-control" @bind-Value="student.ImageUrl" />
+    </div>
+    <button class="btn btn-primary" type="submit">Add</button>
+</EditForm>
+
+@code {
+
+    [Inject]
+    public IStudentService StudentService { get; set; }
+
+    private Student student = new Student();
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+
+    protected async Task HandleValidSubmit()
+    {
+        if (student.ImageUrl == "")
+        {
+            student.ImageUrl = null;
+        }
+        Student result = null;
+        result = await StudentService.AddStudent(student);
+        if (result != null)
+        {
+            NavigationManager.NavigateTo($"/StudentDetails/{result.StudentId}");
+        }
+    }
+}

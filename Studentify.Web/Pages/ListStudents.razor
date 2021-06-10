@@ -1,4 +1,4 @@
-﻿@page "/Students"
+@page "/Students"
 
 @inject NavigationManager navigationManager
 
@@ -28,6 +28,8 @@
             else
             {
                 <div class="col-3 border mt-1">
+                <a href="@($"Students/Add")" class="btn btn-secondary">Add Student</a>
+                <hr />
                     <h4>Sort by</h4>
                     <form>
                         <div class="form-check">
