@@ -112,7 +112,7 @@ footer .fa-user-graduate {
     
 }
 .lapDiv{
-    margin-top:7%;
+    margin-top:9%;
 }
 .lap2Div {
     margin-top: 4%;
@@ -121,6 +121,8 @@ footer .fa-user-graduate {
 .la3pDiv {
     margin-top: 10%;
 }
+.rNav{
+    float:right;
 
 .add-course-button{
     width: 200px;

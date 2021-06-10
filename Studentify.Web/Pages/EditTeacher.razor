@@ -8,48 +8,48 @@
 @using Studentify.Web.Models
 @using AutoMapper;
 
-<div class="lapDiv"></div>
-
-<EditForm Model="@EditTeacherModel" OnValidSubmit="HandleValidSubmit">
-    @*<ObjectGraphDataAnnotationsValidator />*@
-    <h3>Edit Teacher</h3>
-    <hr />
-    <ValidationSummary />
-    <div class="form-group row">
-        <label for="teacherName" class="col-sm-2 col-form-label">
-            Name
-        </label>
-        <div class="col-sm-10">
-            <InputText id="teacherName" class="form-control" placeholder="First Name"
-                       @bind-Value="EditTeacherModel.TeacherName" />
-            <ValidationMessage For="@(() => EditTeacherModel.TeacherName)" />
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="imageUrl" class="col-sm-2 col-form-label">
-            ImageUrl
-        </label>
-        <div class="col-sm-10">
-            <InputText id="imageUrl" class="form-control" placeholder="Last Name"
-                       @bind-Value="EditTeacherModel.ImageUrl" />
-            <ValidationMessage For="@(() => EditTeacherModel.ImageUrl)" />
-        </div>
-    </div>
-    @*<div class="form-group row">
-            Updating Department Name from this page does not make sense
-            This is only here to demonstrate complex model validation
-            <label for="deptName" class="col-sm-2 col-form-label">
-                Department Name
+<div class="lapDiv "></div>
+<div class=" container">
+    <EditForm Model="@EditTeacherModel" OnValidSubmit="HandleValidSubmit">
+        @*<ObjectGraphDataAnnotationsValidator />*@
+        <h3>Edit Teacher</h3>
+        <hr />
+        <ValidationSummary />
+        <div class="form-group row">
+            <label for="teacherName" class="col-sm-2 col-form-label">
+                Name
             </label>
-            <div id="deptName" class="col-sm-10">
-                <InputText @bind-Value="EditTeacherModel.Department.DepartmentName"
-                           class="form-control" />
-                <ValidationMessage For="@(() => EditTeacherModel.Department.DepartmentName)" />
+            <div class="col-sm-10">
+                <InputText id="teacherName" class="form-control" placeholder="First Name"
+                           @bind-Value="EditTeacherModel.TeacherName" />
+                <ValidationMessage For="@(() => EditTeacherModel.TeacherName)" />
             </div>
-        </div>*@
-    <button class="btn btn-primary" type="submit">Submit</button>
-</EditForm>
-
+        </div>
+        <div class="form-group row">
+            <label for="imageUrl" class="col-sm-2 col-form-label">
+                ImageUrl
+            </label>
+            <div class="col-sm-10">
+                <InputText id="imageUrl" class="form-control" placeholder="Last Name"
+                           @bind-Value="EditTeacherModel.ImageUrl" />
+                <ValidationMessage For="@(() => EditTeacherModel.ImageUrl)" />
+            </div>
+        </div>
+        @*<div class="form-group row">
+                Updating Department Name from this page does not make sense
+                This is only here to demonstrate complex model validation
+                <label for="deptName" class="col-sm-2 col-form-label">
+                    Department Name
+                </label>
+                <div id="deptName" class="col-sm-10">
+                    <InputText @bind-Value="EditTeacherModel.Department.DepartmentName"
+                               class="form-control" />
+                    <ValidationMessage For="@(() => EditTeacherModel.Department.DepartmentName)" />
+                </div>
+            </div>*@
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </EditForm>
+</div>
 
 @code {
 
