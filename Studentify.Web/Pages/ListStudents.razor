@@ -1,69 +1,73 @@
-﻿@page "/Students"
-
+@page "/Students"
 
 @inject NavigationManager navigationManager
 
-    <div class="lapDiv"></div>
+<section class="container pb-5 lapDiv" id="top">
 
-<h1>Students</h1>
+    <h1 class="display-3">Students</h1>
+    <p>
+        Nemo animi soluta ratione quisquam, dicta ab cupiditate iure eaque? Repellendus voluptatum, magni impedit eaque delectus, beatae maxime temporibus maiores quibusdam quasi rem magnam ad perferendis iusto.
+    </p>
 
-<hr />
- @*Action Will bind search to http *@
-<form action="/students/@SearchTerm"  method="get">
-    <div class="input-group flex-center">
-        <input class="form-control" @bind-value="@SearchTerm"  />
-        <div class="input-group-append">
-            <button type="submit" class="btn btn-primary"> Search </button>
+    @*Action Will bind search to http *@
+    <form action="/students/@SearchTerm" method="get">
+        <div class="input-group flex-center w-50">
+            <input class="form-control" placeholder="Find student" @bind-value="@SearchTerm" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-info ml-3"> Search </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="my-5">
+        <div class="row">
+            @if (Students == null)
+            {
+                <div class="spinner"></div>
+            }
+            else
+            {
+                <div class="col-3 border mt-1">
+                <a href="@($"Students/Add")" class="btn btn-secondary">Add Student</a>
+                <hr />
+                    <h4>Sort by</h4>
+                    <form>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sort" value="name" checked />
+                            <label class="form-check-label" for="Name">Student Name</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sort" value="id" />
+                            <label class="form-check-label" for="id">Student Id</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-9 pt-1">
+                    @foreach (var student in Students)
+                    {
+                        <div class="row">
+                            <div class="col-3">
+                                <img class="d-block w-100 mx-auto" style="max-height:200px" src="@(student.ImageUrl == null? "/images/default.png" : student.ImageUrl)" alt="@student.StudentName" />
+                            </div>
+                            <div class="col-7">
+                                <h4>@student.StudentName</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
+                            </div>
+                            <div class="col-2 d-flex flex-row">
+                                <a href="@($"/StudentDetails/{student.StudentId}")" class="btn btn-secondary align-self-end">Details</a>
+                            </div>
+                        </div>
+                        <hr />
+                    }
+                </div>
+            }
         </div>
     </div>
-</form>
-<hr />
 
+</section>
 
-
-<div class="container-fluid border p-2">
-    <div class="row pl-3">
-        @if (Students == null)
-        {
-            <div class="spinner"></div>
-        }
-        else
-        {
-    <div class="col-3 border mt-1">
-        <a href="@($"Students/Add")" class="btn btn-secondary">Add Student</a>
-        <hr />
-        <h4>Sort by</h4>
-        <form>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="sort" value="name" checked />
-                <label class="form-check-label" for="Name">Student Name</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="sort" value="id" />
-                <label class="form-check-label" for="id">Student Id</label>
-            </div>
-        </form>
-    </div>
-            <div class="col-9 pt-1">
-                @foreach (var student in Students)
-                {
-                    <div class="row">
-                        <div class="col-3">
-                            <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(student.ImageUrl == null? "/images/default.png" : student.ImageUrl)" alt="@student.StudentName" />
-                        </div>
-                        <div class="col-7">
-                            <h4>@student.StudentName</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
-                        </div>
-                        <div class="col-2 d-flex flex-row">
-                            <a href="@($"/StudentDetails/{student.StudentId}")" class="btn btn-secondary align-self-end">Details</a>
-                        </div>
-                    </div>
-                    <hr />
-                }
-            </div>
-        }
-    </div>
+<div class="d-flex justify-content-center pb-3">
+    <a class="text-center" href="/students/#top">Back to top <span class="oi oi-arrow-top"></span></a>
 </div>
 
 @code
@@ -75,18 +79,11 @@
     public IEnumerable<Student> Students { get; set; } = null;
 
     [Parameter]
-    public string SearchTerm { get; set; } 
+    public string SearchTerm { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         Students = (await StudentService.GetStudents()).ToList();
     }
 
-
-    //private IEnumerable<Student> students = null;
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    await base.OnInitializedAsync();
-    //    students = await StudentService.GetStudents();
-    //}
 }

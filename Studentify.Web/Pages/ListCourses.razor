@@ -1,80 +1,59 @@
-﻿@page "/courses"
-@using Studentify.Models;
-@using Studentify.Web.Services;
+@page "/courses"
 @inject ICourseService courseService;
 
+<section class="container pb-5 lapDiv" id="top">
 
-<div class="lapDiv"></div>
+    <h1 class="display-3">Courses</h1>
+    <p>
+        Nemo animi soluta ratione quisquam, dicta ab cupiditate iure eaque? Repellendus voluptatum, magni impedit eaque delectus, beatae maxime temporibus maiores quibusdam quasi rem magnam ad perferendis iusto.
+    </p>
 
-<hr />
-@*Action Will bind search to http *@
-<form action="/courses/@SearchTerm" method="get">
-    <div class="input-group flex-center">
-        <input class="form-control" @bind-value="@SearchTerm" />
-        <div class="input-group-append">
-            <button type="submit" class="btn btn-primary">Search</button>
+    @*Action Will bind search to http *@
+    <form action="/courses/@SearchTerm" method="get">
+        <div class="input-group flex-center w-50">
+            <input class="form-control" placeholder="Find course" @bind-value="@SearchTerm" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-info ml-3">Search</button>
+            </div>
         </div>
-    </div>
-</form>
-<hr />
+    </form>
 
-
-
-
-<h2 class="text-center mb-5 my-5 pt-4 pb-4 font-weight-bold"> Top courses</h2>
-
-
-<div class="container-fluid p-2">
-    <div class="row pl-3">
+    <div>
         @if (Courses == null)
         {
-            //<h3>Loading</h3>
             <div class="spinner"></div>
         }
         else
         {
 
-            <div class="card-deck">
+            <PopularCourses Courses="@Courses" />
+
+            <h3 class="text-center mt-5">All of our courses</h3>
+
+            <div class="my-5">
                 @foreach (var course in Courses)
                 {
-                    <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
-                        @*<div class="card-header">
-                            <h3>@course.CourseName</h3>
-
-                        </div>*@
-
-                        <img class="card-img-top imageThumbnail" src="https://mdbootstrap.com/img/Photos/Others/images/51.jpg" />
-
-
-
-                        <div class="card-body">
-
-                            <!--Title-->
-                            <h4 class="card-title darkgrey-text">
-                                <strong class="fixed-height-title">@course.CourseName</strong>
-                            </h4>
-                            <hr>
-                            <!--Text-->
-                            <p class="font-small fixed-height-description">
-                                @course.Description
-                            </p>
-                            <a href="#" class="black-text d-flex flex-row-reverse">
-                                <p class="waves-effect p-2 font-small blue-text mb-0">
-                                    Read more
-                                    <i class="fas fa-long-arrow-alt-right ml-2" aria-hidden="true"></i>
-                                </p>
-                            </a>
+                    <div class="row">
+                        <div class="col-3">
+                            <img class="d-block w-100 mx-auto" style="max-height:200px" src="@(course.ImageUrl)" alt="@course.CourseName" />
                         </div>
-
-
-                        <div class="card-footer text-center">
-                            <a href="/courses/details/@course.CourseId" class="btn btn-primary m-1">Details</a>
+                        <div class="col-7">
+                            <h4>@course.CourseName</h4>
+                            <p>@course.Description</p>
+                        </div>
+                        <div class="col-2 d-flex flex-row">
+                            <a href="@($"/course/{course.CourseId}")" class="btn btn-secondary align-self-end">Details</a>
                         </div>
                     </div>
+                    <hr />
                 }
             </div>
         }
     </div>
+</section>
+
+<div class="d-flex justify-content-center pb-3">
+    <a class="text-center" href="/courses/#top">Back to top <span class="oi oi-arrow-top"></span></a>
 </div>
 
 @code
@@ -93,11 +72,4 @@
         Courses = (await CourseService.GetCourses()).ToList();
     }
 
-
-    //private IEnumerable<Course> courses = null;
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    await base.OnInitializedAsync();
-    //    courses = await courseService.GetCourses();
-    //}
 }
