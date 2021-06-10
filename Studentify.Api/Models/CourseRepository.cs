@@ -42,7 +42,7 @@ namespace Studentify.Api.Models
         public async Task<Course> GetCourse(int courseId)
         {
             return await dbContext.Courses
-                //.Include(c => c.Students)
+                .Include(c => c.Students)
                .FirstOrDefaultAsync(t => t.CourseId == courseId);
         }
 
