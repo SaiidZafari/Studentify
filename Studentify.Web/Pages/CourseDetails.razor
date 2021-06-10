@@ -5,7 +5,7 @@
 
 <div class="container">
 
-    @if (course == null )
+    @if (Course == null )
     {
         <h3>Loading</h3>
     }
@@ -21,7 +21,7 @@
                 <!-- Grid column -->
                 <div class="col-lg-5 col-md-12 mb-3 wow fadeIn" data-wow-delay="0.4s">
                     <!-- Image -->
-                    <img src="@course.ImageUrl" class="img-fluid z-depth-1 rounded"
+                    <img src="@Course.ImageUrl" class="img-fluid z-depth-1 rounded"
                          alt="My photo">
                 </div>
                 <!-- Grid column -->
@@ -30,12 +30,12 @@
 
                     <!-- Secion heading -->
                     <h3 class="mb-5 dark-grey-text title font-weight-bold wow fadeIn" data-wow-delay="0.2s">
-                        <strong>@course.CourseName</strong>
+                        <strong>@Course.CourseName</strong>
                     </h3>
 
                     <!-- Description -->
                     <p align="justify" class="grey-text">
-                        @course.Description
+                        @Course.Description
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo animi
                         soluta ratione quisquam, dicta
                         ab cupiditate iure eaque? Repellendus voluptatum, magni impedit delectus, beatae maxime temporibus
@@ -60,75 +60,84 @@
         <hr>
 
         <!-- Section: About 2 -->
-        <section id="about" class="mt-5 mb-5 pb-3 wow fadeIn" data-wow-delay="0.2s">
+<section id="about" class="mt-5 mb-5 pb-3 wow fadeIn" data-wow-delay="0.2s">
 
-            <!-- Grid row -->
-            <div class="row pt-4 mt-5">
+    <!-- Grid row -->
+    <div class="row pt-4 mt-5">
 
-                <!-- Grid column -->
-                <div class="col-lg-6 col-md-12 wow fadeIn" data-wow-delay="0.4s">
+        <!-- Grid column -->
+        <div class="col-lg-6 col-md-12 wow fadeIn" data-wow-delay="0.4s">
 
-                    <!-- Secion heading -->
-                    <h3 class="mb-5 dark-grey-text title font-weight-bold wow fadeIn" data-wow-delay="0.2s">
-                        <strong>Our mission</strong>
-                    </h3>
+            <!-- Secion heading -->
+            <h3 class="mb-5 dark-grey-text title font-weight-bold wow fadeIn" data-wow-delay="0.2s">
+                <strong>Our mission</strong>
+            </h3>
 
-                    <!-- Description -->
-                    <p align="justify" class="grey-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo animi
-                        soluta ratione quisquam, dicta
-                        ab cupiditate iure eaque? Repellendus voluptatum, magni impedit delectus, beatae maxime temporibus
-                        maiores quibusdam.
-                    </p>
-                    <p align="justify" class="grey-text">
-                        Rem magnam ad perferendis iusto sint tempora ea voluptatibus iure,
-                        animi excepturi modi aut possimus
-                        in hic molestias repellendus illo ullam odit quia velit. Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit.
-                    </p>
+            <!-- Description -->
+            <p align="justify" class="grey-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo animi
+                soluta ratione quisquam, dicta
+                ab cupiditate iure eaque? Repellendus voluptatum, magni impedit delectus, beatae maxime temporibus
+                maiores quibusdam.
+            </p>
+            <p align="justify" class="grey-text">
+                Rem magnam ad perferendis iusto sint tempora ea voluptatibus iure,
+                animi excepturi modi aut possimus
+                in hic molestias repellendus illo ullam odit quia velit. Lorem ipsum dolor sit amet, consectetur
+                adipisicing elit.
+            </p>
 
-                </div>
-                <!-- Grid column -->
-                <!-- Grid column -->
-                <div class="col-lg-6 col-md-12 mb-3 wow fadeIn" data-wow-delay="0.4s">
+        </div>
+        <!-- Grid column -->
+        <!-- Grid column -->
+        <div class="col-lg-6 col-md-12 mb-3 wow fadeIn" data-wow-delay="0.4s">
 
-                    <div class="text-left">
-                        <h6 class="title font-weight-bold dark-grey-text  spacing mt-4 mx-4">
-                            <i class="fas fa-square orange-text mr-2" aria-hidden="true"></i>
-                            <strong>Lorem ipsum dolor sit amet</strong>
-                        </h6>
-                        <p class="grey-text font-small mx-4">
-                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred.
-                        </p>
-                    </div>
-
-                    <div class="text-left">
-                        <h6 class="title font-weight-bold dark-grey-text spacing mt-4 mx-4">
-                            <i class="fas fa-square orange-text mr-2" aria-hidden="true"></i>
-                            <strong>Lorem ipsum dolor sit amet</strong>
-                        </h6>
-                        <p class="grey-text font-small mx-4">
-                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-                        </p>
-                    </div>
-
-                    <div class="text-left">
-                        <h6 class="title font-weight-bold dark-grey-text spacing mt-4 mx-4">
-                            <i class="fas fa-square orange-text mr-2" aria-hidden="true"></i>
-                            <strong>Lorem ipsum dolor sit amet</strong>
-                        </h6>
-                        <p class="grey-text font-small mx-4">
-                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                        </p>
-                    </div>
-
-                </div>
-                <!-- Grid column -->
-
+            <div class="text-left">
+                <h6 class="title font-weight-bold dark-grey-text  spacing mt-4 mx-4">
+                    <i class="fas fa-square orange-text mr-2" aria-hidden="true"></i>
+                    <strong>Lorem ipsum dolor sit amet</strong>
+                </h6>
+                <p class="grey-text font-small mx-4">
+                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred.
+                </p>
             </div>
-            <!-- Grid row -->
 
-        </section>
+            <div class="text-left">
+                <h6 class="title font-weight-bold dark-grey-text spacing mt-4 mx-4">
+                    <i class="fas fa-square orange-text mr-2" aria-hidden="true"></i>
+                    <strong>Lorem ipsum dolor sit amet</strong>
+                </h6>
+                <p class="grey-text font-small mx-4">
+                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                </p>
+            </div>
+
+            <div class="text-left">
+                <h6 class="title font-weight-bold dark-grey-text spacing mt-4 mx-4">
+                    <i class="fas fa-square orange-text mr-2" aria-hidden="true"></i>
+                    <strong>Lorem ipsum dolor sit amet</strong>
+                </h6>
+                <p class="grey-text font-small mx-4">
+                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+                </p>
+            </div>
+
+        </div>
+        <!-- Grid column -->
+
+    </div>
+
+    <div class="row pt-4 d-flex justify-content-center">
+        <div class="card-footer text-center">
+            <a href="/courses" class="btn btn-primary">Back</a>
+            <a href="/courses" class="btn btn-primary">Edit</a>
+            <button type="button" class="btn btn-danger m-1" @onclick="DeleteCourse"> Delete </button>
+        </div>
+    </div>
+
+        <!-- Grid row -->
+
+</section>
         <!-- Section: About 2 -->
 
         <hr>
@@ -155,13 +164,12 @@
 
                     <div class="avatar white mb-md-0 mb-4">
 
-                        <img src="@(teacher.ImageUrl == null? "/images/default.png" : teacher.ImageUrl)" class="rounded z-depth-1"
+                        <img src="@(Teacher.ImageUrl == null? "/images/default.png" : Teacher.ImageUrl)" class="rounded z-depth-1"
                              alt="First sample avatar image">
                     </div>
 
 
-                </div>
-                <!-- Grid column -->
+                </div>             
             </div>
 
         </section>
@@ -177,19 +185,28 @@
     [Inject]
     public ITeacherService TeacherService { get; set; }
 
-    public Course course { get; set; }
-    public Teacher teacher { get; set; }
+    public Course Course { get; set; }
+    public Teacher Teacher { get; set; }
 
     [Parameter]
-    public string id { get; set; }
+    public string Id { get; set; }
 
     [Inject]
     public NavigationManager NavigationManager { get; set; }
 
 
+    [Parameter]
+    public EventCallback<int> OnTeacherDeleted { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
-        course = await CourseService.GetCourse(Int32.Parse(id));
-        teacher = await TeacherService.GetTeacher(course.TeacherId);
+        Course = await CourseService.GetCourse(Int32.Parse(Id));
+        Teacher = await TeacherService.GetTeacher(Course.TeacherId);
+    }
+
+    protected async Task DeleteCourse()
+    {
+        await CourseService.DeleteCourse(Course.CourseId);
+        NavigationManager.NavigateTo("/Courses", true);
     }
 }
