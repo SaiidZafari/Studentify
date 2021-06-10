@@ -1,4 +1,4 @@
-﻿@page "/StudentDetails/{id}"
+@page "/StudentDetails/{id}"
 @*<h3>Student Details</h3>*@
 
 <div class="lapDiv"></div>
@@ -26,7 +26,7 @@
                 <div class="card-footer text-center">
                     <a href="/students" class="btn btn-primary">Back</a>
                     <a href="#" class="btn btn-primary">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <button class="btn btn-danger" @onclick="DeleteStudent">Delete</button>
                 </div>
             </div>
         </div>
@@ -50,6 +50,12 @@
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
+    protected async Task DeleteStudent()
+    {
+        await StudentService.DeleteStudent(Student.StudentId);
+
+        NavigationManager.NavigateTo("/Students");
+    }
 
         protected async override Task OnInitializedAsync()
         {

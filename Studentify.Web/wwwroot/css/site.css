@@ -74,6 +74,10 @@ li > a:hover {
     font-size: 40px;
 }
 
+footer .fa-user-graduate {
+    font-size: 70px;
+}
+
 .fixed-height-title{
     height: 55px;
     display: block;
@@ -119,4 +123,13 @@ li > a:hover {
 }
 .rNav{
     float:right;
+
+.add-course-button{
+    width: 200px;
+}
+
+.list-courses-title{
+    width: calc(100% - 200px);
+    font-weight: 700;
+    font-size: 30px;
 }
