@@ -15,9 +15,20 @@ namespace Studentify.Web.Services
             this.httpClient = httpClient;
         }
 
+        public async Task<Student> AddStudent(Student student)
+        {
+            return await httpClient.PostJsonAsync<Student>("api/students", student);
+        }
+
         public async Task<Student> GetStudent(int id)
         {
             return await httpClient.GetJsonAsync<Student>($"api/students/{id}");
+        }
+
+
+        public async Task DeleteStudent(int id)
+        {
+            await httpClient.DeleteAsync($"api/students/{id}");
         }
 
         public async Task<IEnumerable<Student>> GetStudents()

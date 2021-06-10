@@ -1,59 +1,45 @@
 ﻿@page "/"
 
-<StartPageTop/>
+<Hero />
 
-<!--Section: About-->
-<section id="about" class="mt-4 mb-2 vw-100">
+<!--About Studentify-->
+<div class="container my-5" id="top">
+    <div class="row py-5">
 
-    <!--Secion heading-->
-    <h2 class="text-center my-5 font-weight-bold wow fadeIn" data-wow-delay="0.2s">About Studentify</h2>
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Architecture/4-col/img%20%289%29.jpg"
+             class="col-5 align-self-baseline" alt="Campus">
 
-    <!--First row-->
-    <div class="row">
+        <div class="col-7">
+            <h2 class="font-weight-bold display-4">About Studentify</h2>
 
-        <!--First column-->
-        <div class="col-lg-5 col-md-12 mb-5 pb-4 wow fadeIn" data-wow-delay="0.4s">
+            <div class="dark-grey-text">
 
-            <!--Image-->
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Architecture/4-col/img%20%289%29.jpg"
-                 class="img-fluid z-depth-1 rounded" alt="My photo">
+                <p>
+                    Studentify is the brainchild of Adrian, Mikael, Saiid and Jonathan. Studentify has a campus in Dallas Texas where students can take courses in many different subjects.
+                    Studentify's current range of courses includes courses on web development and basic mathematics. We are always looking for more courses to offer our students.
+                </p>
 
-        </div>
-        <!--First column-->
-        <!--Second column-->
-        <div class="col-lg-6 dark-grey-text ml-5 col-md-12 wow fadeIn" data-wow-delay="0.4s">
+                <p>
+                    Our belief is that teachers are at the center of all knowledge and their wisdom is the key for you as a student to flourish.
 
-            <!--Description-->
-            <p align="justify">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo animi soluta ratione
-                quisquam, dicta
-                ab cupiditate iure eaque? Repellendus voluptatum, magni impedit eaque animi maxime.
-            </p>
+                </p>
 
-            <p align="justify">
-                Nemo animi soluta ratione quisquam, dicta ab cupiditate iure eaque? Repellendus
-                voluptatum, magni
-                impedit eaque delectus, beatae maxime temporibus maiores quibusdam quasi rem magnam ad perferendis
-                iusto.
-            </p>
+                <ul class="list-unstyled pl-0">
+                    <li class="font-weight-bold">Studentify's core values are</li>
+                    <li>Respect your elders</li>
+                    <li>Wear sunscreen</li>
+                    <li>Study hard</li>
+                    <li>Just do it</li>
+                </ul>
 
-            <ul>
-                <li>Nemo animi soluta ratione</li>
-                <li>Beatae maxime temporibus</li>
-                <li>Consectetur adipisicing elit</li>
-                <li>Repellendus voluptatum, impedit</li>
-            </ul>
+            </div>
 
         </div>
-        <!--Second column-->
-
     </div>
-    <!--First row-->
+</div>
 
-</section>
-<!--Section: About-->
-
-<div class="streak streak-photo streak-md vw-100"
+<!--Quote-->
+<div class="streak streak-photo streak-md my-5"
      style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/Things/full%20page/img%20%287%29.jpg');">
     <div class="flex-center mask rgba-indigo-strong">
         <div class="text-center white-text">
@@ -67,28 +53,51 @@
     </div>
 </div>
 
+@if (Courses == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+        <PopularCourses Courses="@Courses" HeaderStyle="@headerStyle"/>
+}
 
-<!--<-->@*section id="info" class="mt-4 mb-5 pb-4">*@
+<!--Visit the campus-->
+<div class="container d-flex flex-column my-5">
 
-<!--Section heading-->
-<div class="">
-    <h2 class="text-center mb-5 font-weight-bold pt-5 pb-4 my-5 wow fadeIn" data-wow-delay="0.2s">
-        Visit the campus
+    <h2 class="text-center font-weight-bold mt-5 display-4">
+        Visit campus
     </h2>
-    <!--Section description-->
-    <p class="text-center w-responsive mx-auto my-5 grey-text wow fadeIn" data-wow-delay="0.2s">
-        Duis aute irure
-        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    <p class="text-center mb-5">
+        You are more than welcome to visit us in Dallas Texas any time. We arrange guided tours of our campus every week on Thursdays. Currently, about 200 students are enrolled in courses locally and about 2500+ students sign up for our online courses. Do not hesitate to contact us if you have any questions.
     </p>
 
-    <div class="flex-center justify-content-between">
+    <div class="flex-center justify-content-between align-baseline">
         <img class="w-25" src="/images/pic1.jpg">
         <img class="w-25" src="/images/pic2.jpg">
         <img class="w-25" src="/images/pic3.jpg">
     </div>
 </div>
 
+<div class="d-flex justify-content-center pb-3">
+    <a class="text-center" href="/#top">Back to top <span class="oi oi-arrow-top"></span></a>
+</div>
 
-@*</section>*@
 
+@code
+{
+    [Inject]
+    public ICourseService CourseService { get; set; }
+
+
+    public IEnumerable<Course> Courses { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Courses = (await CourseService.GetCourses()).ToList();
+    }
+
+    string headerStyle = "font-weight-bold display-4";
+
+}

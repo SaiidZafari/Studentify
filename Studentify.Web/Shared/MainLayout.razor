@@ -1,13 +1,12 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="main">
+<div class="d-flex flex-column min-vh-100">
         <Header />
 
-        <div class="content px-4">
-            @Body
-        </div>
-
-        <Footer />
+    <div class="flex-grow-1">
+        @Body
     </div>
+
+    <Footer />
+
 </div>
