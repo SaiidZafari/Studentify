@@ -174,7 +174,11 @@
     [Inject]
     public ICourseService CourseService { get; set; }
 
+    [Inject]
+    public ITeacherService TeacherService { get; set; }
+
     public Course course { get; set; }
+    public Teacher teacher { get; set; }
 
     [Parameter]
     public string id { get; set; }
@@ -186,5 +190,6 @@
     protected override async Task OnInitializedAsync()
     {
         course = await CourseService.GetCourse(Int32.Parse(id));
+        teacher = await TeacherService.GetTeacher(course.TeacherId);
     }
 }
