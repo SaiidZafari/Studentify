@@ -74,6 +74,10 @@ li > a:hover {
     font-size: 40px;
 }
 
+footer .fa-user-graduate {
+    font-size: 70px;
+}
+
 .fixed-height-title{
     height: 55px;
     display: block;
