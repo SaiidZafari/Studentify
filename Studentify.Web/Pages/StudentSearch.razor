@@ -9,87 +9,87 @@
 
 
 <div class="lapDiv"></div>
+<div class=" container">
+    <h3>Student Search</h3>
 
-<h3>Student Search</h3>
+    <hr />
+    @*Action Will bind search to http *@
+    <form action="/students/@SearchTerm" method="get">
+        <div class="input-group flex-center">
+            <input class="form-control" @bind-value="@SearchTerm" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <a href="@($"/Students")" class="btn btn-success">Back to StudentList</a>
+            </div>
+        </div>
+    </form>
+    <hr />
 
-<hr />
-@*Action Will bind search to http *@
-<form action="/students/@SearchTerm" method="get">
-    <div class="input-group flex-center">
-        <input class="form-control" @bind-value="@SearchTerm" />
-        <div class="input-group-append">
-            <button type="submit" class="btn btn-primary">Search</button>
-            <a href="@($"/Students")" class="btn btn-success">Back to StudentList</a>
+
+
+    <div class="container-fluid border p-2">
+        <div class="row pl-3">
+            @if (Students == null)
+            {
+                <h3>Loading</h3>
+            }
+            else
+            {
+                <div class="col-3 border mt-1">
+                    <h4>Sort by</h4>
+                    <form>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sort" value="name" checked />
+                            <label class="form-check-label" for="Name">Student Name</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sort" value="id" />
+                            <label class="form-check-label" for="id">Student Id</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-9 pt-1">
+                    @foreach (var student in Students)
+                    {
+                        <div class="row">
+                            <div class="col-3">
+                                <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(student.ImageUrl == null? "/images/default.png" : student.ImageUrl)" alt="@student.StudentName" />
+                            </div>
+                            <div class="col-7">
+                                <h4>@student.StudentName</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
+                            </div>
+                            <div class="col-2 d-flex flex-row">
+                                <button class="btn btn-secondary align-self-end">Details</button>
+                            </div>
+                        </div>
+                        <hr />
+                    }
+                </div>
+            }
         </div>
     </div>
-</form>
-<hr />
-
-
-
-<div class="container-fluid border p-2">
-    <div class="row pl-3">
-        @if (Students == null)
-        {
-            <h3>Loading</h3>
-        }
-        else
-        {
-            <div class="col-3 border mt-1">
-                <h4>Sort by</h4>
-                <form>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sort" value="name" checked />
-                        <label class="form-check-label" for="Name">Student Name</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sort" value="id" />
-                        <label class="form-check-label" for="id">Student Id</label>
-                    </div>
-                </form>
-            </div>
-            <div class="col-9 pt-1">
-                @foreach (var student in Students)
-                {
-                    <div class="row">
-                        <div class="col-3">
-                            <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(student.ImageUrl == null? "/images/default.png" : student.ImageUrl)" alt="@student.StudentName" />
-                        </div>
-                        <div class="col-7">
-                            <h4>@student.StudentName</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
-                        </div>
-                        <div class="col-2 d-flex flex-row">
-                            <button class="btn btn-secondary align-self-end">Details</button>
-                        </div>
-                    </div>
-                    <hr />
-                }
-            </div>
-        }
-    </div>
 </div>
-
-@code
+    @code
 {
 
-    [Inject]
-    public IStudentService StudentService { get; set; }
+        [Inject]
+        public IStudentService StudentService { get; set; }
 
 
-    public IEnumerable<Student> Students { get; set; }
+        public IEnumerable<Student> Students { get; set; }
 
-    [Parameter]
-    public string SearchTerm { get; set; }
-
-
-    [Parameter]
-    public string name { get; set; }
+        [Parameter]
+        public string SearchTerm { get; set; }
 
 
-    protected override async Task OnInitializedAsync()
-    {
-        Students = (await StudentService.Search(name)).ToList();
+        [Parameter]
+        public string name { get; set; }
+
+
+        protected override async Task OnInitializedAsync()
+        {
+            Students = (await StudentService.Search(name)).ToList();
+        }
+
     }
-
-}

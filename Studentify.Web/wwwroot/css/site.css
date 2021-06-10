@@ -108,7 +108,7 @@ li > a:hover {
     
 }
 .lapDiv{
-    margin-top:7%;
+    margin-top:9%;
 }
 .lap2Div {
     margin-top: 4%;
@@ -116,4 +116,7 @@ li > a:hover {
 
 .la3pDiv {
     margin-top: 10%;
+}
+.rNav{
+    float:right;
 }
