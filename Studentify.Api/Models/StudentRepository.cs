@@ -48,9 +48,7 @@ namespace Studentify.Api.Models
 
         public async Task<IEnumerable<Student>> GetStudents()
         {
-            //return await dbContext.Students.ToListAsync();
-            return await dbContext.Students                
-                 .ToListAsync();
+            return await dbContext.Students.ToListAsync();
         }
 
         public async Task<IEnumerable<Student>> Search(string studentName)
