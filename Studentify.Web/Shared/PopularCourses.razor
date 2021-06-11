@@ -2,14 +2,14 @@
 
     <h3 class="text-center @HeaderStyle mt-5">Popular courses</h3>
 
-    <div class="card-deck">
+    <div class="card-deck ">
         @foreach (var course in Courses.Take(3))
         {
             <div class="card m-3">
 
                 <img class="card-img-top imageThumbnail h-100" src="@course.ImageUrl" alt="@course.CourseName"/>
 
-                <div class="card-body">
+                <div class="card-body col-lg-3">
 
                     <!--Title-->
                     <h4 class="card-title darkgrey-text">
