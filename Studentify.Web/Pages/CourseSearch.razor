@@ -15,7 +15,7 @@
             <input class="form-control" @bind-value="@SearchTerm" />
             <div class="input-group-append">
                 <button type="submit" class="btn btn-primary">Search</button>
-                <a href="@($"/teachers")" class="btn btn-success">Back to TeacherList</a>
+                <a href="@($"/courses")" class="btn btn-success">Back to TeacherList</a>
             </div>
         </div>
     </form>
@@ -40,10 +40,7 @@
                     @foreach (var course in Courses)
                     {
                         <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
-                            @*<div class="card-header">
-                                    <h3>@course.CourseName</h3>
-
-                                </div>*@
+                           
 
                             <img class="card-img-top imageThumbnail" src="https://mdbootstrap.com/img/Photos/Others/images/51.jpg" />
 
@@ -76,95 +73,6 @@
                     }
                 </div>
 
-
-
-
-                <div class="container-fluid background-r">
-                    <div class="container py-3">
-
-                        <!--Section: Blog v.2-->
-                        <section class="extra-margins text-center">
-
-                            <h2 class="text-center mb-5 my-5 pt-4 pb-4 font-weight-bold"> Top courses</h2>
-
-                            <div class="d-flex">
-                                @foreach (var course in Courses)
-                                {
-
-                                    <div class="mx-1 mb-4 wow fadeIn" data-wow-delay="0.4s">
-
-                                        <!--Card Light-->
-                                        <div class="card">
-                                            <!--Card image-->
-                                            <div class="view overlay">
-                                                <img src="https://mdbootstrap.com/img/Photos/Others/images/51.jpg" class="card-img-top" alt="">
-                                                <a>
-                                                    <div class="mask rgba-white-slight"></div>
-                                                </a>
-                                            </div>
-                                            <!--/.Card image-->
-                                            <!--Card content-->
-                                            <div class="card-body">
-
-                                                <!--Title-->
-                                                <h4 class="card-title darkgrey-text">
-                                                    <strong class="fixed-height-title">@course.CourseName</strong>
-                                                </h4>
-                                                <hr>
-                                                <!--Text-->
-                                                <p class="font-small fixed-height-description">
-                                                    @course.Description
-                                                </p>
-                                                <a href="#" class="black-text d-flex flex-row-reverse">
-                                                    <p class="waves-effect p-2 font-small blue-text mb-0">
-                                                        Read more
-                                                        <i class="fas fa-long-arrow-alt-right ml-2" aria-hidden="true"></i>
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <!--/.Card content-->
-                                        </div>
-                                        <!--/.Card Light-->
-
-                                    </div>
-                                }
-                            </div>
-                        </section>
-                    </div>
-                </div>
-
-
-                @*<div class="col-3 border mt-1">
-                        <h4>Sort by</h4>
-                        <form>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="sort" value="name" checked />
-                                <label class="form-check-label" for="Name">Student Name</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="sort" value="id" />
-                                <label class="form-check-label" for="id">Student Id</label>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-9 pt-1">
-                        @foreach (var course in courses)
-                        {
-                            <div class="row">
-                                <div class="col-3">
-                                    <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(course.ImageUrl == null? "/images/default.png" : course.ImageUrl)" alt="@course.CourseName" />
-                                </div>
-                                <div class="col-7">
-                                    <h4>@course.CourseName</h4>
-                                    <p>@course.Description</p>
-                                </div>
-                                <div class="col-2 d-flex flex-row">
-                                    <button class="btn btn-secondary align-self-end">Details</button>
-                                </div>
-                            </div>
-                            <hr />
-                        }
-                    </div>*@
             }
         </div>
     </div>
