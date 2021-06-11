@@ -2,11 +2,6 @@
 @inject ICourseService courseService;
 
 <section class="container pb-5 lap2Div" id="top">
-
-<div class="d-flex align-items-center py-5 mb-5">
-    <a href="@($"courses/add-course")" class="btn btn-secondary add-course-button">Add Course</a>
-</div>
-
     <h1 class="display-3">Courses</h1>
     <p>
         Get inspiration from our popular courses or just browse through our range of courses. We offer courses spanning from basic math courses to the more advanced ASP.NET Core course.
@@ -34,25 +29,45 @@
 
             <PopularCourses Courses="@Courses" />
 
-            <h3 class="text-center mt-5">All of our courses</h3>
+            <div class="container">
+                <h3 class="text-center mt-5">All of our courses</h3>
 
-            <div class="my-5">
-                @foreach (var course in Courses)
-                {
-                    <div class="row">
-                        <div class="col-3">
-                            <img class="d-block w-100 mx-auto" style="max-height:200px" src="@(course.ImageUrl)" alt="@course.CourseName" />
-                        </div>
-                        <div class="col-7">
-                            <h4>@course.CourseName</h4>
-                            <p>@course.Description</p>
-                        </div>
-                        <div class="col-2 d-flex flex-row">
-                            <a href="@($"/courses/details/{course.CourseId}")" class="btn btn-secondary align-self-end">Details</a>
-                        </div>
+                <div class="row">
+                    <div class="col-3 border mt-1">
+                        <a href="@($"courses/add-course")" class="btn btn-secondary">Add Course</a>
+                        <hr />
+                        <h4>Sort by</h4>
+                        <form>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sort" value="name" checked />
+                                <label class="form-check-label" for="Name">Course Name</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sort" value="id" />
+                                <label class="form-check-label" for="id">Course Id</label>
+                            </div>
+                        </form>
                     </div>
-                    <hr />
-                }
+
+                    <div class="col-9 pt-1">
+                        @foreach (var course in Courses)
+                        {
+                            <div class="row">
+                                <div class="col-3">
+                                    <img class="d-block w-100 mx-auto" style="max-height:200px" src="@(course.ImageUrl)" alt="@course.CourseName" />
+                                </div>
+                                <div class="col-7">
+                                    <h4>@course.CourseName</h4>
+                                    <p>@course.Description</p>
+                                </div>
+                                <div class="col-2 d-flex flex-row">
+                                    <a href="@($"/courses/details/{course.CourseId}")" class="btn btn-secondary align-self-end">Details</a>
+                                </div>
+                            </div>
+                            <hr />
+                        }
+                    </div>
+                </div>
             </div>
         }
     </div>

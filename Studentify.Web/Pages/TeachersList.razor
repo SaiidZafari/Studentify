@@ -11,7 +11,7 @@
 
     @*Action Will bind search to http *@
     <form action="/teachers/@SearchTerm" method="get">
-        <div class="input-group flex-center w-50">
+        <div class="input-group flex-center w-100">
             <input class="form-control" placeholder="Find teacher" @bind-value="@SearchTerm" />
             <div class="input-group-append">
                 <button type="submit" class="btn btn-info ml-3">Search</button>
@@ -27,8 +27,8 @@
             }
             else
             {
-                <div class="col-3 border mt-1">
-                    <a href="@($"Teachers/AddTeacher")" class="btn btn-secondary">Add Teacher</a>
+                <div class="col-sm-3 border mt-1">
+                    <a href="@($"Teachers/AddTeacher")" class="btn btn-secondary embed-responsive">Add Teacher</a>
                     <hr />
                     <h4>Sort by</h4>
                     <form>
@@ -43,18 +43,18 @@
                     </form>
                 </div>
 
-                <div class="col-9 pt-1">
+                <div class="col-sm-9 pt-1">
                     @foreach (var teacher in Teachers)
                     {
                         <div class="row">
                             <div class="col-3">
                                 <img class="d-block w-100 mx-auto" style="max-height:200px" src="@(teacher.ImageUrl == null? "/images/default.png" : teacher.ImageUrl)" alt="@teacher.TeacherName" />
                             </div>
-                            <div class="col-7">
+                            <div class="col-sm-7">
                                 <h4>@teacher.TeacherName</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
                             </div>
-                            <div class="col-2 d-flex flex-row">
+                            <div class="col-sm-2 d-flex flex-row">
                                 <a href="@($"TeacherDetails/{teacher.TeacherId}")" class="btn btn-secondary align-self-end">Details</a>
                             </div>
                         </div>
