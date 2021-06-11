@@ -1,17 +1,14 @@
-﻿@page "/courses/add-course/{id}"
-@page "/courses/add-course"
+﻿@page "/courses/add-course"
 
 @using Studentify.Web.Services
 @using Studentify.Models
 @using System.Threading.Tasks
-@using Studentify.Web.Models
-@using AutoMapper;
 
 <div class="lap2Div"></div>
 
 <div class=" container">
 
-    <EditForm Model="@EditCourseModel" OnValidSubmit="HandleValidSubmit" class="pt-5">
+    <EditForm Model="@Course" OnValidSubmit="HandleValidSubmit" class="pt-5">
         <h3>Add Course</h3>
         <hr />
         <ValidationSummary />
@@ -21,8 +18,8 @@
             </label>
             <div class="col-sm-10">
                 <InputText id="courseName" class="form-control" placeholder="Course Name"
-                           @bind-Value="EditCourseModel.CourseName" />
-                <ValidationMessage For="@(() => EditCourseModel.CourseName)" />
+                           @bind-Value="Course.CourseName" />
+                <ValidationMessage For="@(() => Course.CourseName)" />
             </div>
         </div>
         <div class="form-group row">
@@ -31,8 +28,8 @@
             </label>
             <div class="col-sm-10">
                 <InputText id="description" class="form-control" placeholder="Course Description"
-                           @bind-Value="EditCourseModel.Description" />
-                <ValidationMessage For="@(() => EditCourseModel.Description)" />
+                           @bind-Value="Course.Description" />
+                <ValidationMessage For="@(() => Course.Description)" />
             </div>
         </div>
         <div class="form-group row">
@@ -41,8 +38,8 @@
             </label>
             <div class="col-sm-10">
                 <InputText id="imageUrl" class="form-control" placeholder="Course ImageUrl"
-                           @bind-Value="EditCourseModel.ImageUrl" />
-                <ValidationMessage For="@(() => EditCourseModel.ImageUrl)" />
+                           @bind-Value="Course.ImageUrl" />
+                <ValidationMessage For="@(() => Course.ImageUrl)" />
             </div>
         </div>
         <div class="form-group row">
@@ -50,9 +47,8 @@
                 Subject ID
             </label>
             <div class="col-sm-10">
-                <InputText id="subjectId" class="form-control" placeholder="Course Subject ID"
-                           @bind-Value="EditCourseModel.SubjectId" />
-                <ValidationMessage For="@(() => EditCourseModel.SubjectId)" />
+                <input id="subjectId" class="form-control" placeholder="Course Subject ID"  @bind="Course.SubjectId" />
+                <ValidationMessage For="@(() => Course.SubjectId)" />
             </div>
         </div>
         <div class="form-group row">
@@ -60,9 +56,9 @@
                 Teacher ID
             </label>
             <div class="col-sm-10">
-                <InputText id="teacherId" class="form-control" placeholder="Course Teacher ID"
-                           @bind-Value="EditCourseModel.TeacherId" />
-                <ValidationMessage For="@(() => EditCourseModel.TeacherId)" />
+                <input id="teacherId" class="form-control" placeholder="Course Teacher ID"
+                           @bind="Course.TeacherId" />
+                <ValidationMessage For="@(() => Course.TeacherId)" />
             </div>
         </div>
         <button class="btn btn-primary" type="submit">Submit</button>
@@ -76,58 +72,18 @@
         [Inject]
         public ICourseService CourseService { get; set; }
 
-        private Course course { get; set; } = new Course();
-
-        public EditCourseModel EditCourseModel { get; set; } = new EditCourseModel();
-
-        public List<Course> Courses { get; set; } = new List<Course>();
-
-        [Parameter]
-        public string Id { get; set; }
-
-        [Inject]
-        public IMapper Mapper { get; set; }
+        private Course Course = new Course();
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        protected async override Task OnInitializedAsync()
-        {
-            int.TryParse(Id, out int CourseId);
-
-            if (CourseId != 0)
-            {
-                course = await CourseService.GetCourse(int.Parse(Id));
-            }
-            else
-            {
-                course = new Course
-                {
-                    CourseId = 0,
-                    CourseName = "Example course name",
-                    Description = "Example course description",
-                    ImageUrl = "images/default.png",
-                    SubjectId = 1,
-                    TeacherId = 1
-
-                };
-            }
-
-            Mapper.Map(course, EditCourseModel);
-        }
-
         protected async Task HandleValidSubmit()
         {
-            Mapper.Map(EditCourseModel, course);
+            Course = await CourseService.CreateCourse(Course);
 
-            if (course.CourseId == 0)
+            if (Course != null)
             {
-                course = await CourseService.CreateCourse(course);
-            }
-
-            if (course != null)
-            {
-                NavigationManager.NavigateTo("/courses");
+                NavigationManager.NavigateTo($"/courses/details/{Course.CourseId}");
             }
         }
 
