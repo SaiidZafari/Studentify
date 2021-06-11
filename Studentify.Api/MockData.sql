@@ -4,9 +4,10 @@ GO
 INSERT INTO [dbo].[Teachers] ([TeacherName], [ImageUrl])
 VALUES
 ('John Doe', '/images/Teacher.png'),
-('Jane Doe','/images/Teacher1.png'),
-('Lars Erik Robert Tublen', '/images/Teacher2.png'),
-('Rutger Hansson', NULL)
+('Jane Doe', '/images/Teacher1.png'),
+('Robert Tublen', '/images/Teacher2.png'),
+('Rutger Hansson', NULL),
+('Gunhilda Gottlieb', NULL)
 GO
 
 INSERT INTO [dbo].[Subjects] ([SubjectName], [Description], [ImageUrl])
@@ -27,7 +28,7 @@ GO
 INSERT INTO [dbo].[Students] ([StudentName], [ImageUrl])
 VALUES
 ('James Doe', 'https://via.placeholder.com/180x200.png?text=James+Doe'),
-('Adrian', '/images/StudentD1.png'),
+('Adrian', '/images/StudentD-1.png'),
 ('Jonathan', '/images/StudentD-2.png'),
 ('Mikael', '/images/StudentD-3.png'),
 ('Saiid', '/images/StudentD-4.png')
