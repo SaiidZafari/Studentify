@@ -35,7 +35,7 @@
             }
             else
             {
-                <div class="col-3 border mt-1">
+                <div class="col-sm-3 border mt-1">
                     <h4>Sort by</h4>
                     <form>
                         <div class="form-check">
@@ -48,18 +48,18 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-9 pt-1">
+                <div class="col-sm-9 pt-1">
                     @foreach (var student in Students)
                     {
                         <div class="row">
                             <div class="col-3">
                                 <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(student.ImageUrl == null? "/images/default.png" : student.ImageUrl)" alt="@student.StudentName" />
                             </div>
-                            <div class="col-7">
+                            <div class="col-lg-7">
                                 <h4>@student.StudentName</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
                             </div>
-                            <div class="col-2 d-flex flex-row">
+                            <div class="col-lg-2 d-flex flex-row">
                                 <button class="btn btn-secondary align-self-end">Details</button>
                             </div>
                         </div>
