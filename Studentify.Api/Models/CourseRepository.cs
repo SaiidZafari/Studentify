@@ -60,7 +60,9 @@ namespace Studentify.Api.Models
                 query = query.Where(c => c.CourseName.Contains(name));
             }
 
-            return await query.ToListAsync();
+            return await query
+                //.Include(q => q.Students)
+                .ToListAsync();
         }
 
         public Task<Course> UpdateCourse(Course course)

@@ -52,7 +52,13 @@
                             </div>
                             <div class="col-sm-7">
                                 <h4>@teacher.TeacherName</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
+                                @foreach (var course in teacher.Courses)
+                                {
+                                    <div class="col-lg-7">
+                                        <h4>@course.CourseName</h4>
+                                        <p>@course.Description</p>
+                                    </div>
+                                }
                             </div>
                             <div class="col-sm-2 d-flex flex-row">
                                 <a href="@($"TeacherDetails/{teacher.TeacherId}")" class="btn btn-secondary align-self-end">Details</a>

@@ -24,15 +24,15 @@
                     <h4>Teacher ID : @Teacher.TeacherId</h4>
                     @foreach (var teacherCurse in @Teacher.Courses)
                     {
-
-                        <table class="table-sm">
+                        <hr />
+                        <table class="table">
                             <tr>
-                                <td><h4>Course:</h4></td>
-                                <td> @teacherCurse.CourseName</td>
+                                <td><h5>Course:</h5></td>
+                                <td><h5>@teacherCurse.CourseName</h5></td>
                             </tr>
                             <tr>
-                                <td><h6>Description:</h6></td>
-                                <td> @teacherCurse.Description</td>
+                                <td><h5>Description:</h5></td>
+                                <td><p>@teacherCurse.Description</p> </td>
                             </tr>
                         </table>
 

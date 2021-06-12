@@ -51,18 +51,27 @@
                 <div class="col-sm-9 pt-1">
                     @foreach (var teacher in Teachers)
                     {
-                        <div class="row">
-                            <div class="col-3">
-                                <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(teacher.ImageUrl == null ? "/images/default.png" : teacher.ImageUrl)" alt="@teacher.TeacherName" />
-                            </div>
-                            <div class="col-lg-7">
-                                <h4>@teacher.TeacherName</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
-                            </div>
-                            <div class="col-lg-2 d-flex flex-row">
-                                <a href="@($"TeacherDetails/{teacher.TeacherId}")" class="btn btn-secondary align-self-end">Details</a>
-                            </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(teacher.ImageUrl == null ? "/images/default.png" : teacher.ImageUrl)" alt="@teacher.TeacherName" />
                         </div>
+                        <div class="col-lg-7">
+                            <h4>@teacher.TeacherName</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eius qui, non modi sint a.</p>
+                        </div>
+                        @foreach (var course in teacher.Courses)
+                        {
+                            <div class="col-lg-7">
+                                <h4>@course.CourseName</h4>
+                                <p>@course.Description</p>
+                            </div>
+                        }
+
+                        <div class="col-lg-2 d-flex flex-row">
+                            <a href="@($"TeacherDetails/{teacher.TeacherId}")" class="btn btn-secondary align-self-end">Details</a>
+                        </div>
+
+                    </div>
                         <hr />
                     }
                 </div>

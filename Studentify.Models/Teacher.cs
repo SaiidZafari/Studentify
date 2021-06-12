@@ -21,7 +21,8 @@ namespace Studentify.Models
 
         //public Course Course { get; set; }
 
-        public IEnumerable<Course> Courses { get; set; } = new List<Course>();        
+        public IEnumerable<Course> Courses { get; set; } = new List<Course>();
+
 
     }
 }

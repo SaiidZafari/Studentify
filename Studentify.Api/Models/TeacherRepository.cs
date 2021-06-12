@@ -67,7 +67,9 @@ namespace Studentify.Api.Models
             //    query = query.Where(t => t.TeacherId == id);
             //}
 
-            return await query.ToListAsync();
+            return await query
+                .Include(t => t.Courses)
+                .ToListAsync();
         }
 
         public async Task<Teacher> UpdateTeacher(Teacher teacher)
