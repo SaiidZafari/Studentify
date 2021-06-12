@@ -15,7 +15,7 @@
     <hr />
     @*Action Will bind search to http *@
     <form action="/teachers/@SearchTerm" method="get">
-        <div class="input-group flex-center">
+        <div class="container input-group flex-center">
             <input class="form-control" @bind-value="@SearchTerm" />
             <div class="input-group-append">
                 <button type="submit" class="btn btn-primary">Search</button>
@@ -34,7 +34,7 @@
             }
             else
             {
-                <div class="col-sm-3 border mt-1">
+                <div class="col-lg-3 border mt-1">
                     <h4>Sort by</h4>
                     <form>
                         <div class="form-check">
@@ -48,10 +48,10 @@
                     </form>
                 </div>
 
-                <div class="col-sm-9 pt-1">
+                <div class="col-lg-9 pt-1">
                     @foreach (var teacher in Teachers)
                     {
-                    <div class="row">
+                    <div class="container row">
                         <div class="col-3">
                             <img class="d-block w-auto mx-auto" style="max-height:200px" src="@(teacher.ImageUrl == null ? "/images/default.png" : teacher.ImageUrl)" alt="@teacher.TeacherName" />
                         </div>
@@ -61,7 +61,7 @@
                         </div>
                         @foreach (var course in teacher.Courses)
                         {
-                            <div class="col-lg-7">
+                            <div class="col-lg-10">
                                 <h4>@course.CourseName</h4>
                                 <p>@course.Description</p>
                             </div>
