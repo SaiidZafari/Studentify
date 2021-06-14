@@ -19,7 +19,7 @@
         </div>
     </form>
 
-    <div class="my-5">
+    <div class="container my-5">
         <div class="row">
             @if (Students == null)
             {
@@ -45,7 +45,7 @@
                 <div class="col-sm-9 pt-1">
                     @foreach (var student in Students)
                     {
-                        <div class="row">
+                        <div class="container row">
                             <div class="col-3">
                                 <img class="d-block w-100 mx-auto" style="max-height:200px" src="@(student.ImageUrl == null? "/images/default.png" : student.ImageUrl)" alt="@student.StudentName" />
                             </div>
